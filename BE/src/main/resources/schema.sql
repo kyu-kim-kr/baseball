@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `baseball`.`player` (
     `batting_average` DOUBLE NULL,
     `number_of_pitches` VARCHAR(45) NULL,
     `team_name` VARCHAR(45) NOT NULL,
-    `bat_order` INT NULL,
+    `batting_order` INT NULL,
     PRIMARY KEY (`name`),
     INDEX `fk_player_team_idx` (`team_name` ASC) VISIBLE,
     CONSTRAINT `fk_player_team`
@@ -56,12 +56,12 @@ CREATE TABLE IF NOT EXISTS `baseball`.`player` (
 DROP TABLE IF EXISTS `baseball`.`score` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`score` (
-    `created_at` DATETIME NOT NULL,
+    `id` INT NOT NULL,
     `home` INT NOT NULL,
     `away` INT NOT NULL,
     `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`created_at`),
+    PRIMARY KEY (`id`),
     INDEX `fk_score_team1_idx` (`home_team` ASC) VISIBLE,
     INDEX `fk_score_team2_idx` (`away_team` ASC) VISIBLE,
     CONSTRAINT `fk_score_team1`
@@ -78,20 +78,22 @@ CREATE TABLE IF NOT EXISTS `baseball`.`score` (
 
 
 -- -----------------------------------------------------
--- Table `baseball`.`status_game`
+-- Table `baseball`.`game`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `baseball`.`status_game` ;
+DROP TABLE IF EXISTS `baseball`.`game` ;
 
-CREATE TABLE IF NOT EXISTS `baseball`.`status_game` (
-    `home` VARCHAR(45) NOT NULL,
-    `away` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `baseball`.`game` (
+    `id` INT NOT NULL,
+    `home_team` VARCHAR(45) NOT NULL,
+    `away_team` VARCHAR(45) NOT NULL,
     `home_score` INT NULL,
     `away_score` INT NULL,
     `inning` INT NULL,
     `status` VARCHAR(45) NULL,
-    `ball_count` VARCHAR(45) NULL)
+    `ball` VARCHAR(45) NULL,
+    `hit` TINYINT NULL,
+    PRIMARY KEY (`id`))
     ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
