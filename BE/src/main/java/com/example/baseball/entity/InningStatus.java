@@ -1,13 +1,12 @@
 package com.example.baseball.entity;
 
-public enum Sbo {
-    STRIKE("STRIKE"),
-    BALL("BALL"),
-    HIT( "HIT");
+public enum InningStatus {
+    TOP("초"),
+    BOTTOM("말");
 
     private String status;
 
-    Sbo(String status) {
+    InningStatus(String status) {
         this.status = status;
     }
 }
