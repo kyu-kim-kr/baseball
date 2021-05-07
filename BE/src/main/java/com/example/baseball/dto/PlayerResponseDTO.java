@@ -1,5 +1,8 @@
 package com.example.baseball.dto;
 
+import com.example.baseball.entity.Game;
+import com.example.baseball.entity.Player;
+
 public class PlayerResponseDTO {
     private String name;
     private String position;
@@ -45,5 +48,17 @@ public class PlayerResponseDTO {
 
     public int getNumberOfPitches() {
         return numberOfPitches;
+    }
+
+    public static PlayerResponseDTO of(Player player) {
+        return new PlayerResponseDTO(
+                player.getName(),
+                player.getPosition(),
+                player.getAtBat(),
+                player.getHits(),
+                player.getOut(),
+                player.getBattingAverage(),
+                player.getNumberOfPitches()
+                );
     }
 }
