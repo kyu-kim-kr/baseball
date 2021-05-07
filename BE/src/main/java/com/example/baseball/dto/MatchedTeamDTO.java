@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 
 public class MatchedTeamDTO {
     @Id
-    @JsonIgnore
     private Long id;
 
     private String homeTeam;

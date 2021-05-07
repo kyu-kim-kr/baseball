@@ -40,9 +40,10 @@ CREATE TABLE IF NOT EXISTS `baseball`.`player` (
     `number_of_pitches` VARCHAR(45) NULL,
     `team_name` VARCHAR(45) NOT NULL,
     `batting_order` INT NULL,
+    `is_bat` TINYINT NULL,
     PRIMARY KEY (`name`),
-    INDEX `fk_player_team_idx` (`team_name` ASC) VISIBLE,
-    CONSTRAINT `fk_player_team`
+    INDEX `fk_Player_Team1_idx` (`team_name` ASC) VISIBLE,
+    CONSTRAINT `fk_Player_Team1`
     FOREIGN KEY (`team_name`)
     REFERENCES `baseball`.`team` (`name`)
     ON DELETE NO ACTION

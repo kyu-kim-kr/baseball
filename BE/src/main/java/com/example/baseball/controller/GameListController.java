@@ -21,7 +21,7 @@ public class GameListController {
         return gameListService.findGame(id);
     }
 
-    @GetMapping("/helloWorld")
+    @GetMapping("/matchList")
     public List<MatchedTeamDTO> findGameList() {
         List<MatchedTeamDTO> games = gameListService.findGameList();
         return games;
