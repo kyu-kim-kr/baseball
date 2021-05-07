@@ -53,7 +53,7 @@ public class HalfInningGameResponseDTO {
     }
 
 
-    public static HalfInningGameResponseDTO builderHalfInningGameResponseDTO(Game game) {
+    public static HalfInningGameResponseDTO of(Game game) {
         return new HalfInningGameResponseDTO(
                 game.getHomeTeam(),
                 game.getAwayTeam(),

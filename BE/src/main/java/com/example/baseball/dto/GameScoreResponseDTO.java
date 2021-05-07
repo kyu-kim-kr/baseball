@@ -31,7 +31,7 @@ public class GameScoreResponseDTO {
         return awayScore;
     }
 
-    public static GameScoreResponseDTO builderGameScoreResponseDTO(Score score) {
+    public static GameScoreResponseDTO of(Score score) {
         return new GameScoreResponseDTO(score.getHomeTeam(), score.getAwayTeam(), score.getHomeScore(), score.getAwayScore());
     }
 }
