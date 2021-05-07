@@ -1,26 +1,40 @@
 package com.example.baseball.dto;
 
+import com.example.baseball.entity.Game;
+import com.example.baseball.entity.Player;
+
 public class PlayerResponseDTO {
     private String name;
+    private String teamName;
     private String position;
     private String atBat; //타석
     private int hits;
     private int out;
     private double battingAverage; //타율
     private int numberOfPitches; //투구수
+    private int battingOrder; //타석 나가는 순서
+    private boolean isBatting; //공격 차례에서 타석에 나갔는지 안나갔는지 체크
 
-    public PlayerResponseDTO(String name, String position, String atBat, int hits, int out, double battingAverage, int numberOfPitches) {
+
+    public PlayerResponseDTO(String name, String teamName, String position, String atBat, int hits, int out, double battingAverage, int numberOfPitches, int battingOrder, boolean isBatting) {
         this.name = name;
+        this.teamName = teamName;
         this.position = position;
         this.atBat = atBat;
         this.hits = hits;
         this.out = out;
         this.battingAverage = battingAverage;
         this.numberOfPitches = numberOfPitches;
+        this.battingOrder = battingOrder;
+        this.isBatting = isBatting;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getTeamName() {
+        return teamName;
     }
 
     public String getPosition() {
@@ -45,5 +59,28 @@ public class PlayerResponseDTO {
 
     public int getNumberOfPitches() {
         return numberOfPitches;
+    }
+
+    public int getBattingOrder() {
+        return battingOrder;
+    }
+
+    public boolean isBatting() {
+        return isBatting;
+    }
+
+    public static PlayerResponseDTO of(Player player) {
+        return new PlayerResponseDTO(
+                player.getName(),
+                player.getTeamName(),
+                player.getPosition(),
+                player.getAtBat(),
+                player.getHits(),
+                player.getOut(),
+                player.getBattingAverage(),
+                player.getNumberOfPitches(),
+                player.getBattingOrder(),
+                player.isBatting()
+                );
     }
 }
