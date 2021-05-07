@@ -1,10 +1,8 @@
 package com.example.baseball.dto;
 
 import com.example.baseball.entity.Game;
-import org.springframework.data.annotation.Id;
 
 public class MatchedTeamDTO {
-    @Id
     private Long id;
 
     private String homeTeam;

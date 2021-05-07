@@ -17,16 +17,15 @@ public class GameListService {
         this.gameRepository = gameRepository;
     }
 
-    public MatchedTeamDTO findGame(Long id) {
-        Game game = gameRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        System.out.println(game.getId());
-        return MatchedTeamDTO.of(game);
-    }
+//    public MatchedTeamDTO findGame(Long id) {
+//        Game game = gameRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+//        return MatchedTeamDTO.of(game);
+//    }
 
     public List<MatchedTeamDTO> findGameList() {
         return gameRepository.findAll()
                 .stream()
-                .map(game -> findGame(game.getId()))
+                .map(game -> MatchedTeamDTO.of(game))
                 .collect(Collectors.toList());
     }
 
