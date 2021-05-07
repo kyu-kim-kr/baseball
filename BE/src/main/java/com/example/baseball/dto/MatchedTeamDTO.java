@@ -1,7 +1,6 @@
 package com.example.baseball.dto;
 
 import com.example.baseball.entity.Game;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 
 public class MatchedTeamDTO {

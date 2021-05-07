@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class GameListController {
+public class    GameListController {
     private final GameListService gameListService;
     
     public GameListController (GameListService gameListService) {
@@ -24,7 +24,5 @@ public class GameListController {
     @GetMapping("/matchList")
     public List<MatchedTeamDTO> findGameList() {
         List<MatchedTeamDTO> games = gameListService.findGameList();
-        return games;
-    }
-
+        return games
 }
