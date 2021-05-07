@@ -14,10 +14,7 @@ public class Game {
     private Integer homeScore;
     private Integer awayScore;
     private Integer inning;
-    private InningStatus status;
-
-    @Embedded.Nullable
-    private BallCount ballCount;
+    private InningStatus inningStatus;
 
     public Long getId() {
         return id;
@@ -43,11 +40,8 @@ public class Game {
         return inning;
     }
 
-    public InningStatus getStatus() {
-        return status;
+    public InningStatus getInningStatus() {
+        return inningStatus;
     }
 
-    public BallCount getBallCount() {
-        return ballCount;
-    }
 }
