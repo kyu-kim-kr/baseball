@@ -1,27 +1,30 @@
 package com.example.baseball.dto;
 
-import com.example.baseball.entity.BallCount;
 import com.example.baseball.entity.Game;
-import com.example.baseball.entity.InningStatus;
 
 public class HalfInningGameResponseDTO {
+
+    private Long id;
 
     private String homeTeam;
     private String awayTeam;
     private Integer homeScore;
     private Integer awayScore;
     private Integer inning;
-    private InningStatus status; //Enum으로 관리
-    private BallCount ballCount;
+    private String inningStatus; //Enum으로 관리
 
-    public HalfInningGameResponseDTO(String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, InningStatus status, BallCount ballCount) {
+    public HalfInningGameResponseDTO(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, String inningStatus) {
+        this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.inning = inning;
-        this.status = status;
-        this.ballCount = ballCount;
+        this.inningStatus = inningStatus;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getHomeTeam() {
@@ -44,24 +47,21 @@ public class HalfInningGameResponseDTO {
         return inning;
     }
 
-    public InningStatus getStatus() {
-        return status;
+    public String getInningStatus() {
+        return inningStatus;
     }
 
-    public BallCount getBallCount() {
-        return ballCount;
-    }
 
 
     public static HalfInningGameResponseDTO of(Game game) {
         return new HalfInningGameResponseDTO(
+                game.getId(),
                 game.getHomeTeam(),
                 game.getAwayTeam(),
                 game.getHomeScore(),
                 game.getAwayScore(),
                 game.getInning(),
-                game.getStatus(),
-                game.getBallCount()
+                game.getInningStatus().getStatus()
         );
     }
 }

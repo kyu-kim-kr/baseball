@@ -7,12 +7,12 @@ public class Player {
     private String name;
     private String teamName;
     private String position;
-    private String atBat; //타석
-    private int hits;
-    private int out;
-    private double battingAverage; //타율
-    private int numberOfPitches; //투구수
-    private int battingOrder; //타석 나가는 순서
+    private Integer atBat; //타석
+    private Integer hits;
+    private Integer out;
+    private Double battingAverage; //타율
+    private Integer numberOfPitches; //투구수
+    private Integer battingOrder; //타석 나가는 순서
     private boolean isBatting; //공격 차례에서 타석에 나갔는지 안나갔는지 체크
 
     public String getName() {
@@ -27,27 +27,27 @@ public class Player {
         return position;
     }
 
-    public String getAtBat() {
+    public Integer getAtBat() {
         return atBat;
     }
 
-    public int getHits() {
+    public Integer getHits() {
         return hits;
     }
 
-    public int getOut() {
+    public Integer getOut() {
         return out;
     }
 
-    public double getBattingAverage() {
+    public Double getBattingAverage() {
         return battingAverage;
     }
 
-    public int getNumberOfPitches() {
+    public Integer getNumberOfPitches() {
         return numberOfPitches;
     }
 
-    public int getBattingOrder() {
+    public Integer getBattingOrder() {
         return battingOrder;
     }
 
