@@ -10,6 +10,13 @@ public class BallCount {
     private Sbo ball;
     private Long gameId;
 
+    public BallCount(String playerName, Sbo ball, Long gameId) {
+        this.id = null;
+        this.playerName = playerName;
+        this.ball = ball;
+        this.gameId = gameId;
+    }
+
     public Long getId() {
         return id;
     }

@@ -64,7 +64,10 @@ public class GameScoreService {
     }
 
     public PlayGameDTO updatePitch(Integer inning, String inningStatus) {
-        return null;
+        BallCount ballCount = new BallCount("Kyu", Sbo.STRIKE, 1L);
+        ballCountRepository.save(ballCount);
+
+        return findAttackGameDTO(inning, inningStatus);
     }
 
 //    public GameDTO findDefenseGameDTO(Integer inning, String inningStatus) {
