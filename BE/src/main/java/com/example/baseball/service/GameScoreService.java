@@ -59,6 +59,14 @@ public class GameScoreService {
         return gameDTO;
     }
 
+    public PlayGameDTO findPlayGameDTO(Integer inning, String inningStatus) {
+        return null;
+    }
+
+    public PlayGameDTO updatePitch(Integer inning, String inningStatus) {
+        return null;
+    }
+
 //    public GameDTO findDefenseGameDTO(Integer inning, String inningStatus) {
 //
 //        GameScoreResponseDTO gameScoreResponseDTO = GameScoreResponseDTO.of(scoreRepository.findById(1L).orElseThrow(IllegalArgumentException::new));
