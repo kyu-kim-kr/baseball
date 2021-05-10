@@ -10,16 +10,22 @@ import Foundation
 class GameViewModel {
     
     @Published var game: Game!
-    private var fetchGame: FetchGame
+    private var path: String
+    private var inning: Int
+    private var inningStatus: String
+    private var fetchGameUseCase: FetchingGameUseCase
     
-    init(fetchgame: FetchGame) {
-        self.fetchGame = FetchGame()
+    init(path: String, inning: Int, inningStatus: String, fetchgame: FetchingGameUseCase) {
+        self.path = path
+        self.inning = inning
+        self.inningStatus = inningStatus
+        self.fetchGameUseCase = FetchingGameUseCase()
         fetchGameViewModel()
     }
     
     func fetchGameViewModel() {
-        fetchGame.fetchGame(completion: { result in
-            self.game = result.game
+        fetchGameUseCase.fetchGame(path: path, inning: inning, inningStatus: inningStatus, completion: { game in
+            self.game = game
         })
     }
 }

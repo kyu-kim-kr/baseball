@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class FetchGameList {
+class FetchingGameListUseCase {
     
     private var network: Network
     private var requestable: Requestable
@@ -19,8 +19,9 @@ class FetchGameList {
         self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
-    func fetchGameList(completion: @escaping (GameListDTO)->Void) {
-        network.request(with: requestable, dataType: GameListDTO.self)
+    func fetchGameList(completion: @escaping ([GameList]?)->Void) {
+        // 변경 필요한 부분 DTO로
+        network.request(with: requestable, dataType: [GameList].self)
             .sink { (result) in
                 switch result {
                 case .failure(let error):

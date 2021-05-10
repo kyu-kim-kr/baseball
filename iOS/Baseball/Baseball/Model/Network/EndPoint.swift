@@ -14,22 +14,6 @@ protocol Requestable {
     func url() -> URL?
 }
 
-public struct GameAPIEndpoint: Requestable {
-    
-    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/"
-    public let path: String
-    public let httpMethod: HttpMethod
-    
-    init(path: String, httpMethod: HttpMethod) {
-        self.path = path
-        self.httpMethod = httpMethod
-    }
-    
-    public func url() -> URL? {
-        return URL(string: baseURL + path)
-    }
-}
-
 public struct GameListAPIEndPoint: Requestable {
     public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/matchList"
     public let path: String
@@ -44,10 +28,33 @@ public struct GameListAPIEndPoint: Requestable {
         return URL(string: baseURL + path)
     }
 }
-// GET
-// game/attack/{inning}/{inningStatus}
-// game/defense/{inning}/{inningStatus}
-// game/detail/{gameId}/{homeTeam}
 
-// PUT
-// game/defense/{inning}/{inningStatus}
+public struct GamePlayAPIEndPoint: Requestable {
+    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/game/"
+    public let path: String
+    public let httpMethod: HttpMethod
+    
+    init(path: String, inning: Int, inningStatus: String, httpMethod: HttpMethod) {
+        self.path = path + "/\(inning)/" + inningStatus
+        self.httpMethod = httpMethod
+    }
+    
+    public func url() -> URL? {
+        return URL(string: baseURL + path)
+    }
+}
+
+public struct GameDetailScoreAPIEndPoint: Requestable {
+    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/detail/"
+    public let path: String
+    public let httpMethod: HttpMethod
+    
+    init(path: String, gameId: Int, Team: String, httpMethod: HttpMethod) {
+        self.path = "/(gameId)/" + Team
+        self.httpMethod = httpMethod
+    }
+    
+    public func url() -> URL? {
+        return URL(string: baseURL + path)
+    }
+}

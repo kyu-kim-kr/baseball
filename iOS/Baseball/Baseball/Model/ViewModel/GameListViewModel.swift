@@ -9,23 +9,22 @@ import Foundation
 
 class GameListViewModel {
     @Published var gameList: [GameList]
-    private var fetchGameList: FetchGameList
+    private var fetchGameListUseCase: FetchingGameListUseCase
     
     init() {
         self.gameList = []
-        self.fetchGameList = FetchGameList()
+        self.fetchGameListUseCase = FetchingGameListUseCase()
         fetchGameListViewModel()
     }
     
     func fetchGameListViewModel() {
-        fetchGameList.fetchGameList(completion: { result in
-            self.gameList = result.gameList
+        fetchGameListUseCase.fetchGameList(completion: { result in
+            self.gameList = result ?? []
         })
     }
     
     func getGameList(indexPath: IndexPath) -> GameList? {
-        guard let count = gameList.count
-        return
+        return gameList.count == 0 ? nil : gameList[indexPath.row]
     }
     
     func count() -> Int {

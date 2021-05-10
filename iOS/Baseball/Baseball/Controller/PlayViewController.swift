@@ -15,9 +15,7 @@ class PlayViewController: UIViewController {
         self.BallCountTableView.delegate = self
         self.BallCountTableView.dataSource = self
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
-       
     }
-
 }
 
 extension PlayViewController: UITableViewDelegate {

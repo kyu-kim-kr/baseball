@@ -8,19 +8,19 @@
 import Foundation
 import Combine
 
-class FetchGame {
+class FetchingGameUseCase {
     
     private var network: Network
-    private var requestable: Requestable
     private var subscriptions = Set<AnyCancellable>()
     
     init() {
         self.network = Network()
-        self.requestable = GameAPIEndpoint(path: "", httpMethod: .get)
     }
     
-    func fetchGame(completion: @escaping (GameDTO)->Void) {
-        network.request(with: requestable, dataType: GameDTO.self)
+    func fetchGame(path: String, inning: Int, inningStatus: String,
+                   completion: @escaping (Game)->Void) {
+        let endPoint = GamePlayAPIEndPoint(path: path, inning: inning, inningStatus: inningStatus, httpMethod: HttpMethod.get)
+        network.request(with: endPoint, dataType: GameDTO.self)
             .sink { (result) in
                 switch result {
                 case .failure(let error):
@@ -29,7 +29,7 @@ class FetchGame {
                     break
                 }
             } receiveValue: { (game) in
-                completion(game)
+                completion(game.toDomain())
             }
             .store(in: &subscriptions)
     }

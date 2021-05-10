@@ -61,7 +61,7 @@ class Network {
                 return httpResponse.statusCode
             }
             .mapError { error in
-                NetworkError.network(description: error.localizedDescription)
+                .network(description: error.localizedDescription)
             }
             .eraseToAnyPublisher()
     }
