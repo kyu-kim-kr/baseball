@@ -8,8 +8,7 @@ import com.example.baseball.repository.PlayerRepository;
 import com.example.baseball.repository.ScoreRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,10 +63,18 @@ public class GameScoreService {
     }
 
     public PlayGameDTO updatePitch(Integer inning, String inningStatus) {
-        BallCount ballCount = new BallCount("Kyu", Sbo.STRIKE, 1L);
+        BallCount ballCount = new BallCount("Kyu", getRandomSbo(), 1L);
         ballCountRepository.save(ballCount);
 
         return findAttackGameDTO(inning, inningStatus);
+    }
+
+    private Sbo getRandomSbo() {
+        List<Sbo> values = Collections.unmodifiableList(Arrays.asList(Sbo.values()));
+        int size = values.size();
+        Random random = new Random();
+
+        return values.get(random.nextInt(size));
     }
 
 //    public GameDTO findDefenseGameDTO(Integer inning, String inningStatus) {
