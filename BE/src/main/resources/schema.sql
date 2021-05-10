@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `baseball`.`game` (
 DROP TABLE IF EXISTS `baseball`.`ball_count` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`ball_count` (
-    `id` INT NOT NULL,
+    `id` INT NOT NULL AUTO_INCREMENT,
     `player_name` VARCHAR(45) NOT NULL,
     `ball` VARCHAR(45) NOT NULL,
     `game_id` INT NOT NULL,
