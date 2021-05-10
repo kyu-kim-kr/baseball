@@ -12,8 +12,6 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var BallCountTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.BallCountTableView.delegate = self
-        self.BallCountTableView.dataSource = self
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
     }
 }

@@ -45,18 +45,8 @@ struct Player: Decodable {
 }
 
 struct BallCount: Decodable {
-    enum ball: Int, Decodable {
-        case strike = 0
-        case ball = 1
-        case hit = 2
-    }
     var id: Int
     var ball: String
     var hit: Bool
     var gameId: Int
-}
-
-struct Score {
-    var home: [Int]
-    var away: [Int]
 }

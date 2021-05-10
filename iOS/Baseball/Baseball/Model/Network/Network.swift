@@ -48,10 +48,8 @@ class Network {
         request.httpMethod = endPoint.httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        if json != nil {
-            request.setValue(String(json.count),
+        request.setValue(String(json.count),
                              forHTTPHeaderField: "Content-Length")
-        }
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { data, response -> Int in

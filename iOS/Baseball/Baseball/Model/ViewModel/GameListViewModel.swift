@@ -6,21 +6,41 @@
 //
 
 import Foundation
+import Combine
 
 class GameListViewModel {
     @Published var gameList: [GameList]
+    @Published var errorMessage: String
     private var fetchGameListUseCase: FetchingGameListUseCase
     
     init() {
         self.gameList = []
+        self.errorMessage = ""
         self.fetchGameListUseCase = FetchingGameListUseCase()
-        fetchGameListViewModel()
+        request()
     }
     
-    func fetchGameListViewModel() {
+    func request() {
         fetchGameListUseCase.fetchGameList(completion: { result in
-            self.gameList = result ?? []
+            switch result {
+            case .failure(let error):
+                self.errorMessage = "\(error)"
+            case .success(let data):
+                self.gameList = data
+            }
         })
+    }
+    
+    func fetchGameList() -> AnyPublisher<[GameList], Never> {
+        return $gameList
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+    
+    func except() -> AnyPublisher<String, Never> {
+        return $errorMessage
+            .dropFirst()
+            .eraseToAnyPublisher()
     }
     
     func getGameList(indexPath: IndexPath) -> GameList? {

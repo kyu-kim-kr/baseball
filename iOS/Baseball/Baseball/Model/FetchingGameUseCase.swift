@@ -18,7 +18,7 @@ class FetchingGameUseCase {
     }
     
     func fetchGame(path: String, inning: Int, inningStatus: String,
-                   completion: @escaping (Game)->Void) {
+                   completion: @escaping (Game?)->Void) {
         let endPoint = GamePlayAPIEndPoint(path: path, inning: inning, inningStatus: inningStatus, httpMethod: HttpMethod.get)
         network.request(with: endPoint, dataType: GameDTO.self)
             .sink { (result) in
@@ -32,5 +32,9 @@ class FetchingGameUseCase {
                 completion(game.toDomain())
             }
             .store(in: &subscriptions)
+        }
+    
+    func alertError(error: Error) -> Error {
+        return error
     }
 }
