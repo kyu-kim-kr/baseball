@@ -8,10 +8,11 @@
 import Foundation
 
 class GameListViewModel {
-    @Published var gameList: GameList!
+    @Published var gameList: [GameList]
     private var fetchGameList: FetchGameList
     
-    init(fetchGameList: FetchGameList) {
+    init() {
+        self.gameList = []
         self.fetchGameList = FetchGameList()
         fetchGameListViewModel()
     }
@@ -22,4 +23,12 @@ class GameListViewModel {
         })
     }
     
+    func getGameList(indexPath: IndexPath) -> GameList? {
+        guard let count = gameList.count
+        return
+    }
+    
+    func count() -> Int {
+        return gameList.count
+    }
 }

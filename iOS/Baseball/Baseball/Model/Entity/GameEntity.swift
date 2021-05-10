@@ -8,9 +8,9 @@
 import Foundation
 
 struct GameList: Decodable {
-    var gameNumber: Int
-    var home: String
-    var away: String
+    var id: Int
+    var homeTeam: String
+    var awayTeam: String
 }
 
 struct Game: Decodable {

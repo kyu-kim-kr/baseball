@@ -7,5 +7,5 @@ struct GameDTO: Decodable {
 }
 
 struct GameListDTO: Decodable {
-    private (set) var gameList: GameList
+    private (set) var gameList: [GameList]
 }

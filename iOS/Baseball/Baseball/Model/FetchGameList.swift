@@ -16,7 +16,7 @@ class FetchGameList {
     
     init() {
         self.network = Network()
-        self.requestable = GameAPIEndpoint(path: "", httpMethod: .get)
+        self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
     func fetchGameList(completion: @escaping (GameListDTO)->Void) {

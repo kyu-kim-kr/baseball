@@ -10,7 +10,7 @@ import Combine
 
 class MainViewController: UIViewController {
     @IBOutlet weak var gameListCollectionView: UICollectionView!
-    private var gameListViewModel: GameListViewModel!
+    private var gameListViewModel = GameListViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -18,10 +18,10 @@ class MainViewController: UIViewController {
         self.gameListCollectionView.delegate = self
         self.gameListCollectionView.dataSource = self
         self.gameListCollectionView.register(GameListCell.nib, forCellWithReuseIdentifier: GameListCell.identifier)
+        bind()
     }
     
     func bind() {
-        // nil을 넣는다?
         gameListViewModel.$gameList
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { (result) in
@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +48,7 @@ extension MainViewController: UICollectionViewDataSource {
             return GameListCell()
         }
         
+        cell.gameList = gameListViewModel.getGameList(indexPath: indexPath)
         return cell
         
     }
