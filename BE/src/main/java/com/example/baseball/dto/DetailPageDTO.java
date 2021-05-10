@@ -3,38 +3,38 @@ package com.example.baseball.dto;
 import java.util.List;
 
 public class DetailPageDTO {
-    GameScoreResponseDTO gameScoreResponseDTO;
-    List<HalfInningGameResponseDTO> halfInningGameResponseDTOs;
-    List<PlayerResponseDTO> playerResponseDTOS;
+    GameScoreDTO gameScoreDTO;
+    List<HalfInningGameDTO> halfInningGameDTOS;
+    List<PlayerDTO> playerDTOS;
 
-    public DetailPageDTO(GameScoreResponseDTO gameScoreResponseDTO, List<HalfInningGameResponseDTO> halfInningGameResponseDTOs, List<PlayerResponseDTO> playerResponseDTOS) {
-        this.gameScoreResponseDTO = gameScoreResponseDTO;
-        this.halfInningGameResponseDTOs = halfInningGameResponseDTOs;
-        this.playerResponseDTOS = playerResponseDTOS;
+    public DetailPageDTO(GameScoreDTO gameScoreDTO, List<HalfInningGameDTO> halfInningGameDTOS, List<PlayerDTO> playerDTOS) {
+        this.gameScoreDTO = gameScoreDTO;
+        this.halfInningGameDTOS = halfInningGameDTOS;
+        this.playerDTOS = playerDTOS;
     }
 
-    public GameScoreResponseDTO getGameScoreResponseDTO() {
-        return gameScoreResponseDTO;
+    public GameScoreDTO getGameScoreResponseDTO() {
+        return gameScoreDTO;
     }
 
-    public List<HalfInningGameResponseDTO> getHalfInningGameResponseDTOs() {
-        return halfInningGameResponseDTOs;
+    public List<HalfInningGameDTO> getHalfInningGameDTOs() {
+        return halfInningGameDTOS;
     }
 
-    public List<PlayerResponseDTO> getPlayerResponseDTOS() {
-        return playerResponseDTOS;
+    public List<PlayerDTO> getPlayerResponseDTOS() {
+        return playerDTOS;
     }
 
-    public DetailPageDTO of(GameScoreResponseDTO gameScoreResponseDTO, List<HalfInningGameResponseDTO> halfInningGameResponseDTOs, List<PlayerResponseDTO> playerResponseDTOS) {
-        return new DetailPageDTO(gameScoreResponseDTO, halfInningGameResponseDTOs, playerResponseDTOS);
+    public DetailPageDTO of(GameScoreDTO gameScoreDTO, List<HalfInningGameDTO> halfInningGameDTOS, List<PlayerDTO> playerDTOS) {
+        return new DetailPageDTO(gameScoreDTO, halfInningGameDTOS, playerDTOS);
     }
 
     @Override
     public String toString() {
         return "DetailPageDTO{" +
-                "gameScoreResponseDTO=" + gameScoreResponseDTO +
-                ", halfInningGameResponseDTOs=" + halfInningGameResponseDTOs +
-                ", playerResponseDTOS=" + playerResponseDTOS +
+                "gameScoreResponseDTO=" + gameScoreDTO +
+                ", HalfInningGameDTOs=" + halfInningGameDTOS +
+                ", playerResponseDTOS=" + playerDTOS +
                 '}';
     }
 }

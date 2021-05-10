@@ -1,5 +1,6 @@
 package com.example.baseball.service;
 
+import com.example.baseball.dto.MatchedListDTO;
 import com.example.baseball.entity.Game;
 import com.example.baseball.dto.MatchedTeamDTO;
 import com.example.baseball.repository.GameRepository;
@@ -18,11 +19,12 @@ public class GameListService {
         this.scoreRepository = scoreRepository;
     }
 
-    public List<MatchedTeamDTO> findGameList() {
-        return scoreRepository.findAll()
-                .stream()
-                .map(score -> MatchedTeamDTO.of(score))
-                .collect(Collectors.toList());
+    public MatchedListDTO findGameList() {
+        List<MatchedTeamDTO> matchedTeamDTOS = scoreRepository.findAll()
+                                            .stream()
+                                            .map(score -> MatchedTeamDTO.of(score))
+                                            .collect(Collectors.toList());
+        return MatchedListDTO.of(matchedTeamDTOS);
     }
 
 }

@@ -16,10 +16,10 @@ INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, innin
 
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Tree', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 1, TRUE);
+VALUES ('Tree', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 1, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Branch', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 2, TRUE);
+VALUES ('Branch', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 2, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
 VALUES ('chanho', 'hitter', 1, 2, 1, 0.9, null, 'Captain', 3, FALSE );
@@ -34,7 +34,7 @@ INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `b
 VALUES ('Kyu', 'pitcher', null, null, null, null, '35', 'Captain', null, FALSE);
 
 
-INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (1, 'Tree', 'HIT', 1);
-INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (2, 'Tree', 'BALL', 1);
-INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (3, 'Tree', 'BALL' , 1);
-INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (4, 'Tree', 'BALL' , 1);
+-- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (1, 'Tree', 'BALL', 1);
+-- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (2, 'Tree', 'BALL', 1);
+-- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (3, 'Tree', 'BALL' , 1);
+-- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (4, 'Tree', 'BALL' , 1);

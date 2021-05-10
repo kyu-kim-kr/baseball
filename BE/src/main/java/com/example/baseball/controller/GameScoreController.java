@@ -19,18 +19,18 @@ public class GameScoreController {
 
     @GetMapping("/game/attack/{inning}/{inningStatus}")
     public PlayGameDTO showAttackScreen(@PathVariable Integer inning, @PathVariable String inningStatus) {
-        return gameScoreService.findAttackGameDTO(inning, inningStatus);
+        return gameScoreService.findGameDTO(inning, inningStatus);
     }
 
-//    @GetMapping("/game/defense/{inning}/{inningStatus}")
-//    public GameDTO showDefenseScreen(@PathVariable Integer inning, @PathVariable String inningStatus) {
-//        return gameScoreService.findGameDTO(inning, inningStatus);
-//    }
+    @GetMapping("/game/defense/{inning}/{inningStatus}")
+    public PlayGameDTO showDefenseScreen(@PathVariable Integer inning, @PathVariable String inningStatus) {
+        return gameScoreService.findGameDTO(inning, inningStatus);
+    }
 
-//    @PutMapping("/game/defense/{inning}/{inningStatus}")
-//    public GameDTO updatePitch(@PathVariable Integer inning, @PathVariable String inningStatus) {
-//        return gameScoreService.updatePitch(inning, inningStatus);
-//    }
+    @PutMapping("/game/defense/{inning}/{inningStatus}")
+    public PlayGameDTO updatePitch(@PathVariable Integer inning, @PathVariable String inningStatus) {
+        return gameScoreService.updatePitch(inning, inningStatus);
+    }
 
 
 }

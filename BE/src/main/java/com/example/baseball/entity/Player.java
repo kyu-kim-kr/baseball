@@ -1,5 +1,6 @@
 package com.example.baseball.entity;
 
+import com.example.baseball.dto.PlayerDTO;
 import org.springframework.data.annotation.Id;
 
 public class Player {
@@ -54,4 +55,5 @@ public class Player {
     public boolean isBatting() {
         return isBatting;
     }
+
 }

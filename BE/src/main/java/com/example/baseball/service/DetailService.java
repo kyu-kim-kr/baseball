@@ -25,18 +25,18 @@ public class DetailService {
 
 
     public DetailPageDTO showDetailpage(Long gameId, String teamName) {
-        GameScoreResponseDTO score = GameScoreResponseDTO.of(scoreRepository.findById(gameId).orElseThrow(IllegalArgumentException::new));
+        GameScoreDTO score = GameScoreDTO.of(scoreRepository.findById(gameId).orElseThrow(IllegalArgumentException::new));
 
-        List<HalfInningGameResponseDTO> halfInningGameResponseDTOs = gameRepository.findGamesByHomeTeam(score.getHomeTeam())
+        List<HalfInningGameDTO> halfInningGameDTOS = gameRepository.findGamesByHomeTeam(score.getHomeTeam())
                 .stream()
-                .map(game -> HalfInningGameResponseDTO.of(game))
+                .map(game -> HalfInningGameDTO.of(game))
                 .collect(Collectors.toList());
 
-        List<PlayerResponseDTO> players = playerRepository.findPlayersByTeamName(teamName)
+        List<PlayerDTO> players = playerRepository.findPlayersByTeamName(teamName)
                 .stream()
-                .map(player -> PlayerResponseDTO.of(player))
+                .map(player -> PlayerDTO.of(player))
                 .collect(Collectors.toList());
 
-        return new DetailPageDTO(score, halfInningGameResponseDTOs, players);
+        return new DetailPageDTO(score, halfInningGameDTOS, players);
     }
 }
