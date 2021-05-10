@@ -27,13 +27,14 @@ public class GameScoreService {
     }
 
     public PlayGameDTO findAttackGameDTO(Integer inning, String inningStatus) {
-        String attackTeam = "";
+        String attackTeam = ""; //inningStatus가 TOP일때는 away
         String defenseTeam = "";
 
         HalfInningGameResponseDTO halfInningGameResponseDTO = HalfInningGameResponseDTO.of(gameRepository.findGameByInningAndInningStatus(inning, InningStatus.valueOf(inningStatus)).orElseThrow(IllegalArgumentException::new));
-        GameScoreResponseDTO gameScoreResponseDTO = GameScoreResponseDTO.of(scoreRepository.findByHomeTeamAndAwayTeam(halfInningGameResponseDTO.getHomeTeam(), halfInningGameResponseDTO.getAwayTeam()).orElseThrow(IllegalArgumentException::new));
+        GameScoreResponseDTO gameScoreResponseDTO = GameScoreResponseDTO
+                .of(scoreRepository.findByHomeTeamAndAwayTeam(halfInningGameResponseDTO.getHomeTeam(), halfInningGameResponseDTO.getAwayTeam()).orElseThrow(IllegalArgumentException::new));
 
-        if(inningStatus.equals(InningStatus.TOP.toString())) {
+        if(inningStatus.equals(InningStatus.TOP.toString())) { //put 로직에 추가해야됨
             attackTeam = halfInningGameResponseDTO.getAwayTeam();
             defenseTeam = halfInningGameResponseDTO.getHomeTeam();
         }
@@ -43,16 +44,12 @@ public class GameScoreService {
             defenseTeam = halfInningGameResponseDTO.getAwayTeam();
         }
 
-//        List<PlayerResponseDTO> playerResponseDTOs = new ArrayList<>();
-//        playerResponseDTOs.add(PlayerResponseDTO.of(playerRepository.findPlayerByTeamNameAndPositionIsPitcher(defenseTeam,"pitcher").orElseThrow(IllegalArgumentException::new)));
-//        playerResponseDTOs.add()
+        List<PlayerResponseDTO> playerResponseDTOs = new ArrayList<>();
+        playerResponseDTOs.add(PlayerResponseDTO.of(playerRepository.findPlayerByTeamNameAndPositionIsPitcher(defenseTeam).orElseThrow(IllegalArgumentException::new)));
+        playerResponseDTOs.add(PlayerResponseDTO.of(playerRepository.findPlayerByTeamNameAndPositionAndBattingIsFalseAndBattingOrder(attackTeam).orElseThrow(IllegalArgumentException::new)));
 
-        List<PlayerResponseDTO> playerResponseDTOs = playerRepository.findAll()
-                .stream()
-                .map(player -> PlayerResponseDTO.of(player))
-                .collect(Collectors.toList());
-
-        List<BallCountDTO> ballCountDTOS = ballCountRepository.findAll()
+        List<BallCountDTO> ballCountDTOS = ballCountRepository.findAllByGameId(halfInningGameResponseDTO.getId())
+//        List<BallCountDTO> ballCountDTOS = ballCountRepository.findAll()
                 .stream()
                 .map(ballCount -> BallCountDTO.of(ballCount))
                 .collect(Collectors.toList());

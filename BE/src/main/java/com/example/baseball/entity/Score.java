@@ -8,14 +8,18 @@ public class Score {
     private Long id;
     private String homeTeam;
     private String awayTeam;
-    private int homeScore;
-    private int awayScore;
+    private Integer homeScore;
+    private Integer awayScore;
 
-    public int getHomeScore() {
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getHomeScore() {
         return homeScore;
     }
 
-    public int getAwayScore() {
+    public Integer getAwayScore() {
         return awayScore;
     }
 

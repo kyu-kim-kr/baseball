@@ -12,8 +12,9 @@ public class HalfInningGameResponseDTO {
     private Integer awayScore;
     private Integer inning;
     private String inningStatus; //Enum으로 관리
+    private Long scoreId;
 
-    public HalfInningGameResponseDTO(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, String inningStatus) {
+    public HalfInningGameResponseDTO(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, String inningStatus, Long scoreId) {
         this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -21,6 +22,7 @@ public class HalfInningGameResponseDTO {
         this.awayScore = awayScore;
         this.inning = inning;
         this.inningStatus = inningStatus;
+        this.scoreId = scoreId;
     }
 
     public Long getId() {
@@ -51,7 +53,9 @@ public class HalfInningGameResponseDTO {
         return inningStatus;
     }
 
-
+    public Long getScoreId() {
+        return scoreId;
+    }
 
     public static HalfInningGameResponseDTO of(Game game) {
         return new HalfInningGameResponseDTO(
@@ -61,7 +65,8 @@ public class HalfInningGameResponseDTO {
                 game.getHomeScore(),
                 game.getAwayScore(),
                 game.getInning(),
-                game.getInningStatus().getStatus()
+                game.getInningStatus().getStatus(),
+                game.getScoreId()
         );
     }
 }

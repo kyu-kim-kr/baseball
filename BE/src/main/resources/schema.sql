@@ -32,12 +32,12 @@ DROP TABLE IF EXISTS `baseball`.`player` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`player` (
     `name` VARCHAR(45) NOT NULL,
-    `position` VARCHAR(45) NULL,
+    `position` VARCHAR(45) NOT NULL,
     `at_bat` INT NULL,
     `hits` INT NULL,
     `out` INT NULL,
     `batting_average` DOUBLE NULL,
-    `number_of_pitches` VARCHAR(45) NULL,
+    `number_of_pitches` INT NULL,
     `team_name` VARCHAR(45) NOT NULL,
     `batting_order` INT NULL,
     `is_batting` BOOLEAN NULL,
@@ -84,14 +84,21 @@ CREATE TABLE IF NOT EXISTS `baseball`.`score` (
 DROP TABLE IF EXISTS `baseball`.`game` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`game` (
-     `id` INT NOT NULL,
-     `home_team` VARCHAR(45) NOT NULL,
+    `id` INT NOT NULL,
+    `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
-    `home_score` INT NULL,
-    `away_score` INT NULL,
-    `inning` INT NULL,
-    `inning_status` VARCHAR(45) NULL,
-    PRIMARY KEY (`id`))
+    `home_score` INT NOT NULL,
+    `away_score` INT NOT NULL,
+    `inning` INT NOT NULL,
+    `inning_status` VARCHAR(45) NOT NULL,
+    `score_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `fk_game_score1_idx` (`score_id` ASC) VISIBLE,
+    CONSTRAINT `fk_game_score1`
+    FOREIGN KEY (`score_id`)
+    REFERENCES `baseball`.`score` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
     ENGINE = InnoDB;
 
 
@@ -101,15 +108,21 @@ CREATE TABLE IF NOT EXISTS `baseball`.`game` (
 DROP TABLE IF EXISTS `baseball`.`ball_count` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`ball_count` (
-   `id` INT NOT NULL,
-   `ball` VARCHAR(45) NOT NULL,
-    `is_hit` BOOLEAN NULL,
+    `id` INT NOT NULL,
+    `player_name` VARCHAR(45) NOT NULL,
+    `ball` VARCHAR(45) NOT NULL,
     `game_id` INT NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_ball_count_game1_idx` (`game_id` ASC) VISIBLE,
+    INDEX `fk_ball_count_player1_idx` (`player_name` ASC) VISIBLE,
     CONSTRAINT `fk_ball_count_game1`
     FOREIGN KEY (`game_id`)
     REFERENCES `baseball`.`game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_ball_count_player1`
+    FOREIGN KEY (`player_name`)
+    REFERENCES `baseball`.`player` (`name`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
     ENGINE = InnoDB;

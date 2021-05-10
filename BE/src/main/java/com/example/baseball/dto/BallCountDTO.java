@@ -1,19 +1,18 @@
 package com.example.baseball.dto;
 
 import com.example.baseball.entity.BallCount;
-import com.example.baseball.entity.Sbo;
 
 public class BallCountDTO {
 
     private Long id;
+    private String playerName;
     private String ball;
-    private boolean hit;
     private Long gameId;
 
-    public BallCountDTO(Long id, String ball, boolean hit, Long gameId) {
+    public BallCountDTO(Long id, String playerName, String ball, Long gameId) {
         this.id = id;
+        this.playerName = playerName;
         this.ball = ball;
-        this.hit = hit;
         this.gameId = gameId;
     }
 
@@ -21,12 +20,12 @@ public class BallCountDTO {
         return id;
     }
 
-    public String getBall() {
-        return ball;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public boolean isHit() {
-        return hit;
+    public String getBall() {
+        return ball;
     }
 
     public Long getGameId() {
@@ -34,6 +33,6 @@ public class BallCountDTO {
     }
 
     public static BallCountDTO of(BallCount ballCount) {
-        return new BallCountDTO(ballCount.getId(), ballCount.getBall().toString(), ballCount.isHit(), ballCount.getGameId());
+        return new BallCountDTO(ballCount.getId(), ballCount.getPlayerName(), ballCount.getBall().getStatus(),ballCount.getGameId());
     }
 }

@@ -6,20 +6,20 @@ public class BallCount {
 
     @Id
     private Long id;
+    private String playerName;
     private Sbo ball;
-    private boolean isHit;
     private Long gameId;
 
     public Long getId() {
         return id;
     }
 
-    public Sbo getBall() {
-        return ball;
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public boolean isHit() {
-        return isHit;
+    public Sbo getBall() {
+        return ball;
     }
 
     public Long getGameId() {

@@ -15,6 +15,7 @@ public class Game {
     private Integer awayScore;
     private Integer inning;
     private InningStatus inningStatus;
+    private Long scoreId;
 
     public Long getId() {
         return id;
@@ -44,4 +45,7 @@ public class Game {
         return inningStatus;
     }
 
+    public Long getScoreId() {
+        return scoreId;
+    }
 }
