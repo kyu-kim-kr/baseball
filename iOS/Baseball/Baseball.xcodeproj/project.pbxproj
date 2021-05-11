@@ -35,6 +35,8 @@
 		D4A2CBD8264414B30019AFB6 /* FetchingGameListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A2CBD7264414B30019AFB6 /* FetchingGameListUseCase.swift */; };
 		D4AC176226491305006D10DC /* GameDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC176126491305006D10DC /* GameDTO.swift */; };
 		D4AC176A26494CDB006D10DC /* DetailPlayerDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC176926494CDB006D10DC /* DetailPlayerDTO.swift */; };
+		D4AC1781264A4610006D10DC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC1780264A4610006D10DC /* Alert.swift */; };
+		D4AC1798264A8A20006D10DC /* SelectedGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC1797264A8A20006D10DC /* SelectedGameViewController.swift */; };
 		E021C1CF5AE375C2F9300D39 /* Pods_Baseball_BaseballUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D46EADD93F895BD0D709A0 /* Pods_Baseball_BaseballUITests.framework */; };
 		E251DC6CD0176A2C568BC3AD /* Pods_Baseball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D159143F731D8C2D8DDBDE86 /* Pods_Baseball.framework */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		D4A2CBD7264414B30019AFB6 /* FetchingGameListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingGameListUseCase.swift; sourceTree = "<group>"; };
 		D4AC176126491305006D10DC /* GameDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDTO.swift; sourceTree = "<group>"; };
 		D4AC176926494CDB006D10DC /* DetailPlayerDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlayerDTO.swift; sourceTree = "<group>"; };
+		D4AC1780264A4610006D10DC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		D4AC1797264A8A20006D10DC /* SelectedGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGameViewController.swift; sourceTree = "<group>"; };
 		F745F685E4AD5287ABA0F515 /* Pods-Baseball-BaseballUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baseball-BaseballUITests.release.xcconfig"; path = "Target Support Files/Pods-Baseball-BaseballUITests/Pods-Baseball-BaseballUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +162,7 @@
 				D4A2CBA7264382B00019AFB6 /* ScoresViewController.swift */,
 				D4A2CB6B2640E4FD0019AFB6 /* MainViewController.swift */,
 				BD8A238026450B8E00828432 /* PlayViewController.swift */,
+				D4AC1797264A8A20006D10DC /* SelectedGameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 				BD8A23752643C5F300828432 /* Network */,
 				D4A2CBC7264405400019AFB6 /* FetchingGameUseCase.swift */,
 				D4A2CBD7264414B30019AFB6 /* FetchingGameListUseCase.swift */,
+				D4AC1780264A4610006D10DC /* Alert.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -528,13 +534,11 @@
 				D4AC176226491305006D10DC /* GameDTO.swift in Sources */,
 				D4A2CBCE26440FCA0019AFB6 /* GameViewModel.swift in Sources */,
 				D4AC176A26494CDB006D10DC /* DetailPlayerDTO.swift in Sources */,
+				D4AC1798264A8A20006D10DC /* SelectedGameViewController.swift in Sources */,
 				D4A2CBC32643DDD00019AFB6 /* EndPoint.swift in Sources */,
-
 				BDF2D0B5264911DF00EDB38F /* GameScreenView.swift in Sources */,
-
 				D4A2CBD8264414B30019AFB6 /* FetchingGameListUseCase.swift in Sources */,
 				D4A2CBC8264405400019AFB6 /* FetchingGameUseCase.swift in Sources */,
-
 				BD8A237A2644F8EB00828432 /* PlayerInformationCell.swift in Sources */,
 				BD8A238126450B8E00828432 /* PlayViewController.swift in Sources */,
 				D4A2CB682640E4FD0019AFB6 /* AppDelegate.swift in Sources */,
@@ -543,6 +547,7 @@
 				D4A2CBD3264412B40019AFB6 /* GameListViewModel.swift in Sources */,
 				D4A2CB6A2640E4FD0019AFB6 /* SceneDelegate.swift in Sources */,
 				BD8A23772643C73A00828432 /* Network.swift in Sources */,
+				D4AC1781264A4610006D10DC /* Alert.swift in Sources */,
 				D4A2CB9C2640E5E60019AFB6 /* GameListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

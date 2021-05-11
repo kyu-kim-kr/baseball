@@ -28,31 +28,11 @@ class MainViewController: UIViewController {
         
         gameListViewModel.except()
             .sink(receiveValue: {[weak self] (error) in
-                self?.showAlert(error: error)
+                DispatchQueue.main.async {
+                    self?.present(Alert.showErrorAlert(error: error), animated: true, completion: nil)
+                }
             })
             .store(in: &subscriptions)
-            
-        
-//        gameListViewModel.$gameList
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveCompletion: { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print(error)
-//                case .finished:
-//                    break
-//                }
-//            }, receiveValue: { [unowned self] _ in
-//                gameListCollectionView.reloadData()
-//            })
-//            .store(in: &subscriptions)
-    }
-    
-    func showAlert(error: String) {
-        let alert = UIAlertController(title: "", message: error, preferredStyle: .alert)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
     }
 }
 
@@ -68,7 +48,17 @@ extension MainViewController: UICollectionViewDataSource {
         
         cell.gameList = gameListViewModel.getGameList(indexPath: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        guard let viewController = storyboard?.instantiateViewController(identifier: "SelectedGameViewController") as? SelectedGameViewController else {
+            return
+        }
         
+        viewController.game = gameListViewModel.getGameList(indexPath: indexPath)
+        viewController.modalPresentationStyle = .formSheet
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 
@@ -78,6 +68,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDelegate
         let height = (collectionView.bounds.height) / 5 - 10
         
         return CGSize(width: width, height: height)
+    }
+}
+
+extension MainViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
     }
 }
 

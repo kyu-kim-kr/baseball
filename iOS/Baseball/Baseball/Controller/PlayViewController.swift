@@ -10,19 +10,16 @@ import Combine
 
 class PlayViewController: UIViewController {
     
-    
     @IBOutlet weak var BallCountTableView: UITableView!
 
     @Published private var gameViewModel = GameViewModel()
     private var subscriptions = Set<AnyCancellable>()
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
 
         loadGame()
-
     }
     
     func loadGame() {
@@ -34,16 +31,11 @@ class PlayViewController: UIViewController {
         
         gameViewModel.except()
             .sink(receiveValue: {[weak self] error in
-                self?.showAlert(error: error)
+                DispatchQueue.main.async {
+                    self?.present(Alert.showErrorAlert(error: error), animated: true, completion: nil)
+                }
             })
             .store(in: &subscriptions)
-    }
-    
-    func showAlert(error: String) {
-        let alert = UIAlertController(title: "", message: error, preferredStyle: .alert)
-        DispatchQueue.main.async {
-            self.present(alert, animated: true, completion: nil)
-        }
     }
 }
 
