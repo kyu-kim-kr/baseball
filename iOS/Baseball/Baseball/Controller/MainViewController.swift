@@ -10,37 +10,55 @@ import Combine
 
 class MainViewController: UIViewController {
     @IBOutlet weak var gameListCollectionView: UICollectionView!
-    private var gameListViewModel: GameListViewModel!
+    private var gameListViewModel = GameListViewModel()
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.gameListCollectionView.delegate = self
-        self.gameListCollectionView.dataSource = self
         self.gameListCollectionView.register(GameListCell.nib, forCellWithReuseIdentifier: GameListCell.identifier)
+        loadGameList()
     }
     
-    func bind() {
-        // nil을 넣는다?
-        gameListViewModel.$gameList
-            .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .finished:
-                    break
-                }
-            }, receiveValue: { [unowned self] _ in
-                gameListCollectionView.reloadData()
+    func loadGameList() {
+        gameListViewModel.fetchGameList()
+            .sink(receiveValue: { [weak self] (gameList) in
+                self?.gameListCollectionView.reloadData()
             })
             .store(in: &subscriptions)
+        
+        gameListViewModel.except()
+            .sink(receiveValue: {[weak self] (error) in
+                self?.showAlert(error: error)
+            })
+            .store(in: &subscriptions)
+            
+        
+//        gameListViewModel.$gameList
+//            .receive(on: DispatchQueue.main)
+//            .sink(receiveCompletion: { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .finished:
+//                    break
+//                }
+//            }, receiveValue: { [unowned self] _ in
+//                gameListCollectionView.reloadData()
+//            })
+//            .store(in: &subscriptions)
+    }
+    
+    func showAlert(error: String) {
+        let alert = UIAlertController(title: "", message: error, preferredStyle: .alert)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return gameListViewModel.count()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,6 +66,7 @@ extension MainViewController: UICollectionViewDataSource {
             return GameListCell()
         }
         
+        cell.gameList = gameListViewModel.getGameList(indexPath: indexPath)
         return cell
         
     }

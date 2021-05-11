@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class FetchGameList {
+class FetchingGameListUseCase {
     
     private var network: Network
     private var requestable: Requestable
@@ -16,20 +16,22 @@ class FetchGameList {
     
     init() {
         self.network = Network()
-        self.requestable = GameAPIEndpoint(path: "", httpMethod: .get)
+        self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
-    func fetchGameList(completion: @escaping (GameListDTO)->Void) {
-        network.request(with: requestable, dataType: GameListDTO.self)
+
+    func fetchGameList(completion: @escaping (Result<[GameList], Error>)->Void) {
+        // 변경 필요한 부분 DTO로
+        network.request(with: requestable, dataType: [GameList].self)
             .sink { (result) in
                 switch result {
                 case .failure(let error):
-                    print(error)
+                    completion(.failure(error))
                 case .finished:
                     break
                 }
             } receiveValue: { (gameList) in
-                completion(gameList)
+                completion(.success(gameList))
             }
             .store(in: &subscriptions)
     }

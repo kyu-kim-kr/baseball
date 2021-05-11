@@ -16,16 +16,8 @@ class ScoresViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.playerInformationTableView.delegate = self
-        self.playerInformationTableView.dataSource = self
         self.playerInformationTableView.register(PlayerInformationCell.nib, forCellReuseIdentifier: PlayerInformationCell.identifier)
     }
-
-
-}
-
-extension ScoresViewController: UITableViewDelegate {
-    
 }
 
 extension ScoresViewController: UITableViewDataSource {

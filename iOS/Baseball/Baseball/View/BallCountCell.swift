@@ -11,10 +11,6 @@ class BallCountCell: UITableViewCell {
 
     static let identifier = "BallCountCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
     }

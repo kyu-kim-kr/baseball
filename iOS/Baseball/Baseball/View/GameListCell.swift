@@ -15,7 +15,6 @@ class GameListCell: UICollectionViewCell {
     static let identifier = "GameListCell"
     
     override func awakeFromNib() {
-        super.awakeFromNib()
         self.awayTeamNameLabel.text = "Rockets"
     }
     
@@ -25,9 +24,10 @@ class GameListCell: UICollectionViewCell {
     
     var gameList: GameList? {
         didSet{
-            self.gameCountLabel.text = "\(gameList?.gameNumber)"
-            self.awayTeamNameLabel.text = gameList?.away
-            self.homeTeamNameLabel.text = gameList?.home
+            guard let gameId = gameList?.id else { return }
+            self.gameCountLabel.text = "\(gameId)"
+            self.awayTeamNameLabel.text = gameList?.awayTeam
+            self.homeTeamNameLabel.text = gameList?.homeTeam
         }
     }
 }

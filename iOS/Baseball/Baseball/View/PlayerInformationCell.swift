@@ -17,11 +17,6 @@ class PlayerInformationCell: UITableViewCell {
     
     static let identifier = "PlayerInformationCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-    
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
