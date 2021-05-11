@@ -8,7 +8,7 @@
 import Foundation
 
 class GameListViewModel {
-    @Published var gameList: [GameList]
+    @Published var gameList: [GameList]?
     private var fetchGameList: FetchGameList
     
     init() {
@@ -19,16 +19,15 @@ class GameListViewModel {
     
     func fetchGameListViewModel() {
         fetchGameList.fetchGameList(completion: { result in
-            self.gameList = result.gameList
+            self.gameList = result
         })
     }
     
-    func getGameList(indexPath: IndexPath) -> GameList? {
-        guard let count = gameList.count
-        return
+    func getGameList(index: Int) -> GameList? {
+        return gameList?[index]
     }
     
     func count() -> Int {
-        return gameList.count
+        return gameList?.count ?? 0
     }
 }

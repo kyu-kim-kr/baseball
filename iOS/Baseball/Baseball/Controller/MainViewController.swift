@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return gameListViewModel.count()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -48,7 +48,7 @@ extension MainViewController: UICollectionViewDataSource {
             return GameListCell()
         }
         
-        cell.gameList = gameListViewModel.getGameList(indexPath: indexPath)
+        cell.gameList = gameListViewModel.getGameList(index: indexPath.row)
         return cell
         
     }

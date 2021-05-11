@@ -19,8 +19,8 @@ class FetchGameList {
         self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
-    func fetchGameList(completion: @escaping (GameListDTO)->Void) {
-        network.request(with: requestable, dataType: GameListDTO.self)
+    func fetchGameList(completion: @escaping ([GameList])->Void) {
+        network.request(with: requestable, dataType: [GameList].self)
             .sink { (result) in
                 switch result {
                 case .failure(let error):
