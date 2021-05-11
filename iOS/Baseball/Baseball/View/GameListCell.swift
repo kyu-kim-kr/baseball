@@ -15,7 +15,6 @@ class GameListCell: UICollectionViewCell {
     static let identifier = "GameListCell"
     
     override func awakeFromNib() {
-        super.awakeFromNib()
         self.awayTeamNameLabel.text = "Rockets"
     }
     

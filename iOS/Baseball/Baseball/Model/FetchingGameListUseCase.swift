@@ -1,5 +1,5 @@
 //
-//  FetchGame.swift
+//  FetchGameList.swift
 //  Baseball
 //
 //  Created by 심영민 on 2021/05/06.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class FetchGame {
+class FetchingGameListUseCase {
     
     private var network: Network
     private var requestable: Requestable
@@ -16,21 +16,24 @@ class FetchGame {
     
     init() {
         self.network = Network()
-        self.requestable = GameAPIEndpoint(path: "", httpMethod: .get)
+        self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
-    func fetchGame(completion: @escaping (GameDTO)->Void) {
-        network.request(with: requestable, dataType: GameDTO.self)
+
+    func fetchGameList(completion: @escaping (Result<[GameList], Error>)->Void) {
+        // 변경 필요한 부분 DTO로
+        network.request(with: requestable, dataType: [GameList].self)
             .sink { (result) in
                 switch result {
                 case .failure(let error):
-                    print(error)
+                    completion(.failure(error))
                 case .finished:
                     break
                 }
-            } receiveValue: { (game) in
-                completion(game)
+            } receiveValue: { (gameList) in
+                completion(.success(gameList))
             }
             .store(in: &subscriptions)
     }
 }
+
