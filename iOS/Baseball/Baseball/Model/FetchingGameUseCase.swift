@@ -18,23 +18,21 @@ class FetchingGameUseCase {
     }
     
     func fetchGame(path: String, inning: Int, inningStatus: String,
-                   completion: @escaping (Game?)->Void) {
-        let endPoint = GamePlayAPIEndPoint(path: path, inning: inning, inningStatus: inningStatus, httpMethod: HttpMethod.get)
+                   completion: @escaping (Result<Game, Error>) -> Void) {
+        
+        let endPoint = GamePlayAPIEndPoint(path: path,
+                                           inning: inning,
+                                           inningStatus: inningStatus,
+                                           httpMethod: HttpMethod.get)
+        
         network.request(with: endPoint, dataType: GameDTO.self)
             .sink { (result) in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .finished:
-                    break
+                if case .failure(let error) = result {
+                    completion(.failure(error))
                 }
             } receiveValue: { (game) in
-                completion(game.toDomain())
+                completion(.success(game.toDomain()))
             }
             .store(in: &subscriptions)
         }
-    
-    func alertError(error: Error) -> Error {
-        return error
-    }
 }

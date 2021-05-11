@@ -6,18 +6,40 @@
 //
 
 import UIKit
+import Combine
 
 class PlayViewController: UIViewController {
 
     @IBOutlet weak var BallCountTableView: UITableView!
+    @Published private var gameViewModel = GameViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
+        loadGame()
     }
-}
-
-extension PlayViewController: UITableViewDelegate {
     
+    func loadGame() {
+        gameViewModel.fetchGame()
+            .sink(receiveValue: {[weak self] game in
+                self?.BallCountTableView.reloadData()
+            })
+            .store(in: &subscriptions)
+        
+        gameViewModel.except()
+            .sink(receiveValue: {[weak self] error in
+                self?.showAlert(error: error)
+            })
+            .store(in: &subscriptions)
+    }
+    
+    func showAlert(error: String) {
+        let alert = UIAlertController(title: "", message: error, preferredStyle: .alert)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 extension PlayViewController: UITableViewDataSource {

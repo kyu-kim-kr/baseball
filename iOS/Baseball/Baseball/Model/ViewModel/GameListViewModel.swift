@@ -25,8 +25,8 @@ class GameListViewModel {
             switch result {
             case .failure(let error):
                 self.errorMessage = "\(error)"
-            case .success(let data):
-                self.gameList = data
+            case .success(let list):
+                self.gameList = list
             }
         })
     }

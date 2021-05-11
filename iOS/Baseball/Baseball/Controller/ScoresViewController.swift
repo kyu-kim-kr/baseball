@@ -20,7 +20,7 @@ class ScoresViewController: UIViewController {
     }
 }
 
-extension ScoresViewController: UITableViewDataSource, UITableViewDelegate {
+extension ScoresViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }

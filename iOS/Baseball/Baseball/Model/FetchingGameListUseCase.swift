@@ -19,22 +19,6 @@ class FetchingGameListUseCase {
         self.requestable = GameListAPIEndPoint(path: "", httpMethod: .get)
     }
     
-//    func fetchGameList(completion: @escaping ([GameList]?)->Void) {
-//        // 변경 필요한 부분 DTO로
-//        network.request(with: requestable, dataType: [GameList].self)
-//            .sink { (result) in
-//                switch result {
-//                case .failure(let error):
-//                    print(error)
-//                case .finished:
-//                    break
-//                }
-//            } receiveValue: { (gameList) in
-//                completion(gameList)
-//            }
-//            .store(in: &subscriptions)
-//    }
-    
     func fetchGameList(completion: @escaping (Result<[GameList], Error>)->Void) {
         // 변경 필요한 부분 DTO로
         network.request(with: requestable, dataType: [GameList].self)
