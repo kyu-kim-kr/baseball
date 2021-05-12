@@ -62,6 +62,9 @@ INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `b
 VALUES ('cH', 'hitter', 0, 0, 0, 0,  null, 'Captain', 8, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('cI', 'hitter', 0, 0, 0, 0,  null, 'Captain', 9, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
 VALUES ('captainP', 'pitcher', null, null, null, null, 0, 'Captain', null, FALSE);
 ---------
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
@@ -87,6 +90,9 @@ VALUES ('mG', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 7, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
 VALUES ('mH', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 8, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('mI', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 9, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
 VALUES ('marvelP', 'pitcher', null, null, null, null, 0, 'Marvel', null, FALSE);
