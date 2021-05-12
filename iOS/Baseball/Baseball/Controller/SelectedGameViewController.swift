@@ -25,7 +25,7 @@ class SelectedGameViewController: UIViewController {
     
     @IBAction func awayButtonTouched(_ sender: UIButton) {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameTabBarController")
-        
+        // path로 attack이 날아가도록 해야한다.
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: nil)
     }
@@ -33,7 +33,7 @@ class SelectedGameViewController: UIViewController {
     @IBAction func homeButtomTouched(_ sender: UIButton) {
         
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameTabBarController")
-        
+        // path로 defense가 날아가도록 해야한다.
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: nil)
     }

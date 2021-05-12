@@ -67,7 +67,7 @@ class Network {
     func decode<T: Decodable>(data: Data, dataType: T.Type) -> AnyPublisher<T, NetworkError> {
       let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-      
+        
       return Just(data)
         .decode(type: T.self, decoder: decoder)
         .mapError { error in

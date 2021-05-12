@@ -11,6 +11,11 @@ class BallCountCell: UITableViewCell {
 
     static let identifier = "BallCountCell"
     
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var ballLabel: UILabel!
+    @IBOutlet weak var strikeCountLabel: UILabel!
+    @IBOutlet weak var ballCountLabel: UILabel!
+    
     static var nib: UINib {
         return UINib(nibName: identifier, bundle: nil)
     }
@@ -19,4 +24,15 @@ class BallCountCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    var ballCount: BallCount? {
+        didSet {
+            self.countLabel.text = String(ballCount?.id ?? 0)
+            self.ballLabel.text = ballCount?.ball
+        }
+    }
+    
+    func configureBallCount(ballCount: [Int]) {
+        self.strikeCountLabel.text = "\(ballCount[0])"
+        self.ballCountLabel.text = "\(ballCount[1])"
+    }
 }

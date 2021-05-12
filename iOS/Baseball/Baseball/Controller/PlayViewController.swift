@@ -14,11 +14,11 @@ class PlayViewController: UIViewController {
 
     @Published private var gameViewModel = GameViewModel()
     private var subscriptions = Set<AnyCancellable>()
+    var path: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
-
         loadGame()
     }
     
@@ -41,13 +41,15 @@ class PlayViewController: UIViewController {
 
 extension PlayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return gameViewModel.ballCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BallCountCell.identifier, for: indexPath) as? BallCountCell else {
             return BallCountCell()
         }
+        cell.ballCount = gameViewModel.game.ballCount[indexPath.row]
+        cell.configureBallCount(ballCount: gameViewModel.calculateBallCount())
         return cell
     }
     

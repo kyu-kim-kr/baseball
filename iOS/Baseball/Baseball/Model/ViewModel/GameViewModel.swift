@@ -18,6 +18,7 @@ class GameViewModel {
     private var fetchGameUseCase: FetchingGameUseCase
     
     init(path: String, inning: Int, inningStatus: String, fetchgame: FetchingGameUseCase) {
+        self.game = Game()
         self.errorMessage = ""
         self.path = path
         self.inning = inning
@@ -53,9 +54,27 @@ class GameViewModel {
             .eraseToAnyPublisher()
     }
     
-//    func fetchGameViewModel() {
-//        fetchGameUseCase.fetchGame(path: path, inning: inning, inningStatus: inningStatus, completion: { game in
-//            self.game = game
-//        })
-//    }
+    func ballCount() -> Int {
+        return game.ballCount.count ?? 0
+    }
+    
+    func calculateBallCount() -> [Int] {
+        var ballCount = [0,0,0]
+        
+        game.ballCount.forEach {
+            if $0.ball == "STRIKE" {
+                ballCount[0] += 1
+                if ballCount[0] == 3 {
+                    ballCount[2] += 1
+                }
+            } else {
+                ballCount[1] += 1
+            }
+            
+            if ballCount[2] == 3 {
+                // 3out 공수교대 요청
+            }
+        }
+        return ballCount
+    }
 }
