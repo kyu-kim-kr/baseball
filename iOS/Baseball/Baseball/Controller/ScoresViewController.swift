@@ -9,14 +9,15 @@ import UIKit
 
 class ScoresViewController: UIViewController {
     
+    @IBOutlet weak var headerView: GamePlayHeaderView!
     @IBOutlet var awayScoreLabel: [UILabel]!
     @IBOutlet var homeScoreLabel: [UILabel]!
     @IBOutlet weak var playerInformationTableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.playerInformationTableView.register(PlayerInformationCell.nib, forCellReuseIdentifier: PlayerInformationCell.identifier)
+        self.headerView.header = Game()
     }
 }
 

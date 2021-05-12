@@ -14,28 +14,17 @@ class GamePlayHeaderView: UIView {
     @IBOutlet weak var awayScoreLabel: UILabel!
     @IBOutlet weak var homeScoreLabel: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    var header: Game? {
+        didSet {
+            self.awayLabel.text = header?.away
+            self.homeLabel.text = header?.home
+            guard let awayScore = header?.awayScore,
+                  let homeScore = header?.homeScore else {
+                return
+            }
+            self.awayScoreLabel.text = "\(awayScore)"
+            self.homeScoreLabel.text = "\(homeScore)"
+        }
     }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    func configure(away: String, home: String, awayScore: Int, homeScore: Int) {
-        self.awayLabel.text = away
-        self.homeLabel.text = home
-        self.awayScoreLabel.text = "\(awayScore)"
-        self.homeScoreLabel.text = "\(homeScore)"
-    }
-    
-//    var header: Game? {
-//        didSet {
-//            self.awayLabel.text = header?.away
-//            self.homeLabel.text = header?.home
-//            self.awayScoreLabel.text = "\(header?.awayScore)"
-//            self.homeScoreLabel.text = "\(header?.homeScore)"
-//        }
 }
 

@@ -38,6 +38,7 @@
 		D4AC1781264A4610006D10DC /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC1780264A4610006D10DC /* Alert.swift */; };
 		D4AC1798264A8A20006D10DC /* SelectedGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC1797264A8A20006D10DC /* SelectedGameViewController.swift */; };
 		D4AC17A6264BC367006D10DC /* GamePlayHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC17A5264BC367006D10DC /* GamePlayHeaderView.swift */; };
+		D4AC17AB264C03B5006D10DC /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC17AA264C03B5006D10DC /* PlayerInfoView.swift */; };
 		E021C1CF5AE375C2F9300D39 /* Pods_Baseball_BaseballUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D46EADD93F895BD0D709A0 /* Pods_Baseball_BaseballUITests.framework */; };
 		E251DC6CD0176A2C568BC3AD /* Pods_Baseball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D159143F731D8C2D8DDBDE86 /* Pods_Baseball.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		D4AC1780264A4610006D10DC /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		D4AC1797264A8A20006D10DC /* SelectedGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGameViewController.swift; sourceTree = "<group>"; };
 		D4AC17A5264BC367006D10DC /* GamePlayHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayHeaderView.swift; sourceTree = "<group>"; };
+		D4AC17AA264C03B5006D10DC /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
 		F745F685E4AD5287ABA0F515 /* Pods-Baseball-BaseballUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baseball-BaseballUITests.release.xcconfig"; path = "Target Support Files/Pods-Baseball-BaseballUITests/Pods-Baseball-BaseballUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +182,7 @@
 				BD8A237D264508F800828432 /* BallCountCell.xib */,
 				BDF2D0B4264911DF00EDB38F /* GameScreenView.swift */,
 				D4AC17A5264BC367006D10DC /* GamePlayHeaderView.swift */,
+				D4AC17AA264C03B5006D10DC /* PlayerInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				BD8A23742643C4E400828432 /* GameListDTO.swift in Sources */,
 				BD8A237E264508F800828432 /* BallCountCell.swift in Sources */,
 				D4A2CBD3264412B40019AFB6 /* GameListViewModel.swift in Sources */,
+				D4AC17AB264C03B5006D10DC /* PlayerInfoView.swift in Sources */,
 				D4A2CB6A2640E4FD0019AFB6 /* SceneDelegate.swift in Sources */,
 				BD8A23772643C73A00828432 /* Network.swift in Sources */,
 				D4AC1781264A4610006D10DC /* Alert.swift in Sources */,

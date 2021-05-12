@@ -320,7 +320,7 @@
                                     <outletCollection property="outCount" destination="Zvi-Cr-7g2" collectionClass="NSMutableArray" id="LqY-Kn-eM8"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGH-yA-Mgp" userLabel="PlayerInfoView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RGH-yA-Mgp" userLabel="PlayerInfoView" customClass="PlayerInfoView" customModule="Baseball" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="407.66666666666669" width="390" height="128.00000000000006"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="투수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCi-KW-Uqe" customClass="Play">
@@ -403,6 +403,14 @@
                                     <constraint firstItem="uxC-L0-IlJ" firstAttribute="top" secondItem="kbk-V8-5lT" secondAttribute="bottom" constant="20" id="s9z-l0-2JB"/>
                                     <constraint firstItem="qN3-FJ-zpk" firstAttribute="top" secondItem="RGH-yA-Mgp" secondAttribute="top" constant="20" id="xRR-Bg-Cgd"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="atBatLabel" destination="4GO-Sp-Avj" id="irC-2e-dCa"/>
+                                    <outlet property="batterLabel" destination="uxC-L0-IlJ" id="YRc-DL-pZi"/>
+                                    <outlet property="batterTurnLabel" destination="02G-4L-FJb" id="t6j-eh-vL2"/>
+                                    <outlet property="numberOfPitchesLabel" destination="LvP-Th-rWl" id="7aF-Fo-z3C"/>
+                                    <outlet property="pitcherLabel" destination="qN3-FJ-zpk" id="Do0-Br-YJb"/>
+                                    <outlet property="pitcherTurnLabel" destination="fxe-jQ-ypm" id="Xto-Cc-jMc"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qA-Cm-JBx" userLabel="Line">
                                 <rect key="frame" x="0.0" y="535.66666666666663" width="390" height="2"/>
@@ -454,6 +462,8 @@
                     <tabBarItem key="tabBarItem" title="Play" image="figure.walk" catalog="system" id="FAI-7L-OTJ"/>
                     <connections>
                         <outlet property="BallCountTableView" destination="oVv-ZS-mwY" id="nHj-vc-Auw"/>
+                        <outlet property="headerView" destination="9fW-CJ-2DX" id="eEt-jx-cRi"/>
+                        <outlet property="playerInfoView" destination="RGH-yA-Mgp" id="mFz-J0-N8Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZk-kO-so8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -468,7 +478,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ha-Ja-7gf" userLabel="HeaderView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ha-Ja-7gf" userLabel="HeaderView" customClass="GamePlayHeaderView" customModule="Baseball" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="43.999999999999993" width="390" height="70.333333333333314"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKG-c2-xhp">
@@ -529,6 +539,12 @@
                                     <constraint firstItem="tKG-c2-xhp" firstAttribute="centerY" secondItem="7ha-Ja-7gf" secondAttribute="centerY" id="xbx-yZ-4Ru"/>
                                     <constraint firstAttribute="trailing" secondItem="apT-f0-kX7" secondAttribute="trailing" id="xtO-gn-2lx"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="awayLabel" destination="t3I-cz-rIh" id="VPp-3J-kep"/>
+                                    <outlet property="awayScoreLabel" destination="UUR-zx-JuG" id="J0e-Ef-jR7"/>
+                                    <outlet property="homeLabel" destination="apT-f0-kX7" id="QSe-Mh-xme"/>
+                                    <outlet property="homeScoreLabel" destination="gft-ZS-0Ba" id="qX5-ke-RfT"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YlR-Da-gU9">
                                 <rect key="frame" x="10" y="114.33333333333331" width="370" height="120"/>
@@ -1090,6 +1106,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Scores" image="rectangle.and.pencil.and.ellipsis" catalog="system" id="G7D-V1-rtW"/>
                     <connections>
+                        <outlet property="headerView" destination="7ha-Ja-7gf" id="JS4-KM-5c3"/>
                         <outlet property="playerInformationTableView" destination="fjD-td-ywJ" id="HyX-K3-34b"/>
                         <outletCollection property="awayScoreLabel" destination="Q5O-bT-iL9" collectionClass="NSMutableArray" id="vp3-Ej-NLY"/>
                         <outletCollection property="homeScoreLabel" destination="3ch-Dq-SYi" collectionClass="NSMutableArray" id="vdU-A2-yiR"/>
