@@ -7,8 +7,8 @@
 
 import Foundation
 
-class DetailPlayerDTO: Decodable {
-    private (set) var gameScoreResponseDTO: GameScoreResponseDTO
-    private (set) var halfInningGameResponseDTO: GameInformationDTO
-    private (set) var playerResponseDTOS: [Player]
-}
+//class DetailPlayerDTO: Decodable {
+//    private (set) var gameScoreResponseDTO: GameScoreResponseDTO
+//    private (set) var halfInningGameResponseDTO: GameInformationDTO
+//    private (set) var playerResponseDTOS: [Player]
+//}

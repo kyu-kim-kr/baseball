@@ -11,7 +11,7 @@ import Combine
 class PlayViewController: UIViewController {
     
     @IBOutlet weak var BallCountTableView: UITableView!
-
+//    private var headerView = GamePlayHeaderView
     @Published private var gameViewModel = GameViewModel()
     private var subscriptions = Set<AnyCancellable>()
     var path: String = ""
@@ -20,12 +20,18 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
         loadGame()
+        
     }
     
     func loadGame() {
         gameViewModel.fetchGame()
             .sink(receiveValue: {[weak self] game in
                 self?.BallCountTableView.reloadData()
+//
+                GamePlayHeaderView.configure(away: self?.gameViewModel.game.away,
+                                           home: self?.gameViewModel.game.home,
+                                           awayScore: self?.gameViewModel.game.awayScore,
+                                           homeScore: self?.gameViewModel.game.homeScore)
             })
             .store(in: &subscriptions)
         
@@ -48,10 +54,28 @@ extension PlayViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BallCountCell.identifier, for: indexPath) as? BallCountCell else {
             return BallCountCell()
         }
+        self.headerView.configure(away: self?.gameViewModel.game.away,
+                                   home: self?.gameViewModel.game.home,
+                                   awayScore: self?.gameViewModel.game.awayScore,
+                                   homeScore: self?.gameViewModel.game.homeScore)
         cell.ballCount = gameViewModel.game.ballCount[indexPath.row]
         cell.configureBallCount(ballCount: gameViewModel.calculateBallCount())
         return cell
     }
     
-    
+//    func test() {
+////        guard let index = gameViewModel.game.players.firstIndex(where: { player in
+////            player.batting == false
+////        }) else {
+////            return
+////        }
+////
+////        gameViewModel.game.players[index].
+//        for i in 0..<gameViewModel.game.players.count {
+//            if gameViewModel.game.players[i].batting == false {
+//                // 타자정보에 넣어준다.
+//                break
+//            }
+//        }
+//    }
 }

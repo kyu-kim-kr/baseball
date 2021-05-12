@@ -15,7 +15,7 @@ protocol Requestable {
 }
 
 public struct GameListAPIEndPoint: Requestable {
-    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/matchList"
+    public let baseURL = "http://ec2-54-180-115-194.ap-northeast-2.compute.amazonaws.com/matchList"
     public let path: String
     public let httpMethod: HttpMethod
     
@@ -30,7 +30,7 @@ public struct GameListAPIEndPoint: Requestable {
 }
 
 public struct GamePlayAPIEndPoint: Requestable {
-    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/game/"
+    public let baseURL = "http://ec2-54-180-115-194.ap-northeast-2.compute.amazonaws.com/game/"
     public let path: String
     public let httpMethod: HttpMethod
     
@@ -45,7 +45,7 @@ public struct GamePlayAPIEndPoint: Requestable {
 }
 
 public struct GameDetailScoreAPIEndPoint: Requestable {
-    public let baseURL = "http://ec2-52-78-16-203.ap-northeast-2.compute.amazonaws.com/detail/"
+    public let baseURL = "http://ec2-54-180-115-194.ap-northeast-2.compute.amazonaws.com/detail/"
     public let path: String
     public let httpMethod: HttpMethod
     

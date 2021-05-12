@@ -3,7 +3,7 @@
 import Foundation
 
 struct GameListDTO: Decodable {
-    private (set) var body: [GameListItemDTO]
+    private (set) var matchList: [GameListItemDTO]
 }
 
 extension GameListDTO {
@@ -13,12 +13,12 @@ extension GameListDTO {
         private let awayTeam: String
         
         func toDomain() -> GameList {
-            return .init(id: id, homeTeam: homeTeam, awayTeam: awayTeam)
+            return .init(gameNo: "GAME \(id)", homeTeam: homeTeam, awayTeam: awayTeam)
         }
     }
     
     func toDomain() -> [GameList] {
-        let gameList = self.body.map { gameListItemDTO in
+        let gameList = self.matchList.map { gameListItemDTO in
             gameListItemDTO.toDomain()
         }
         return gameList

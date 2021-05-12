@@ -24,8 +24,7 @@ class GameListCell: UICollectionViewCell {
     
     var gameList: GameList? {
         didSet{
-            guard let gameId = gameList?.id else { return }
-            self.gameCountLabel.text = "\(gameId)"
+            self.gameCountLabel.text = gameList?.gameNo
             self.awayTeamNameLabel.text = gameList?.awayTeam
             self.homeTeamNameLabel.text = gameList?.homeTeam
         }

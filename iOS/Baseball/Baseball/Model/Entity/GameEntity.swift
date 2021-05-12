@@ -7,14 +7,13 @@
 
 import Foundation
 
-struct GameList: Decodable {
-    //var gameNo: String
-    var id: Int
+struct GameList{
+    var gameNo: String
     var homeTeam: String
     var awayTeam: String
 }
 
-struct Game: Decodable {
+struct Game {
     var id: Int
     var home: String
     var away: String
@@ -22,7 +21,8 @@ struct Game: Decodable {
     var awayScore: Int
     var inning: Int // 몇회
     var inningStatus: String // 초, 말
-    var players: [Player]
+    var hitter: Player?
+    var pitcher: Player?
     var ballCount: [BallCount]
     
     init() {
@@ -33,12 +33,13 @@ struct Game: Decodable {
         self.awayScore = 0
         self.inning = 0
         self.inningStatus = ""
-        self.players = []
+        self.hitter = nil
+        self.pitcher = nil
         self.ballCount = []
     }
     
     init(id: Int, home: String, away: String, homeScore: Int, awayScore: Int, inning: Int, inningStatus: String,
-         players: [Player], ballCount: [BallCount]) {
+         hitter: Player, pitcher: Player, ballCount: [BallCount]) {
         self.id = id
         self.home = home
         self.away = away
@@ -46,17 +47,13 @@ struct Game: Decodable {
         self.awayScore = awayScore
         self.inning = inning
         self.inningStatus = inningStatus
-        self.players = players
+        self.hitter = hitter
+        self.pitcher = pitcher
         self.ballCount = ballCount
     }
 }
 
-struct Team: Decodable {
-    var name: String
-    var players: [Player]
-}
-
-struct Player: Decodable {
+struct Player {
     var name: String
     var teamName: String
     var position: String // 포지션
