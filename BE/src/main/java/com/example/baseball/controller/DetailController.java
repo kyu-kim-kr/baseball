@@ -14,8 +14,13 @@ public class DetailController {
         this.detailService = detailService;
     }
 
-    @GetMapping("/{gameId}/{teamName}")
-    public DetailPageDTO showDetailpage(@PathVariable Long gameId, @PathVariable String teamName) {
-        return detailService.showDetailpage(gameId, teamName);
+    @GetMapping("/home/{teamName}")
+    public DetailPageDTO showHomeDetailpage(@PathVariable String teamName) {
+        return detailService.showHomeDetailPage(teamName);
+    }
+
+    @GetMapping("/away/{teamName}")
+    public DetailPageDTO showAwayDetailpage(@PathVariable String teamName) {
+        return detailService.showAwayDetailPage(teamName);
     }
 }
