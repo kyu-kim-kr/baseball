@@ -82,11 +82,4 @@ public class PlayerDTO {
                 );
     }
 
-    public void addNumberOfPitches(PlayerDTO playerDTO) {
-        this.numberOfPitches = playerDTO.getNumberOfPitches() + 1;
-    }
-
-    public void changeBattingStatus(PlayerDTO playerDTO) {
-        this.isBatting = true;
-    }
 }

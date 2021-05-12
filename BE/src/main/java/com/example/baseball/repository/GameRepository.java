@@ -2,6 +2,7 @@ package com.example.baseball.repository;
 
 import com.example.baseball.entity.Game;
 import com.example.baseball.entity.InningStatus;
+import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -21,5 +22,11 @@ public interface GameRepository extends CrudRepository<Game, Long> {
     List<Game> findGamesByHomeTeam(String homeTeam);
 
     Optional<Game> findGameByInningAndInningStatus(Integer inning, InningStatus inningStatus);
+
+    @Modifying
+    @Query("UPDATE game " +
+            "SET home_score = false " +
+            "WHERE position = 'hitter' AND team_name = :teamName")
+    void updateAttackTeamScore(String teamName);
 }
 

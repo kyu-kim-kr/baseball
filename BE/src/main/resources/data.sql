@@ -16,22 +16,34 @@ INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, innin
 
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Tree', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 1, FALSE);
+VALUES ('A', 'hitter', 0, 0, 0, 0, null, 'Captain', 1, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Branch', 'hitter', 1, 2, 1, 0.535, null, 'Captain', 2, FALSE);
+VALUES ('B', 'hitter', 0, 0, 0, 0.535, null, 'Captain', 2, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('chanho', 'hitter', 1, 2, 1, 0.9, null, 'Captain', 3, FALSE );
+VALUES ('C', 'hitter', 0, 0, 0, 0, null, 'Captain', 3, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('sinsu', 'hitter', 1, 2, 1, 0.535,  null, 'Captain', 4, FALSE );
+VALUES ('D', 'hitter', 0, 0, 0, 0,  null, 'Captain', 4, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Q', 'pitcher', null, null, null, null, '35', 'Marvel', null, FALSE);
+VALUES ('E', 'hitter', 0, 0, 0, 0,  null, 'Captain', 5, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('Kyu', 'pitcher', null, null, null, null, '35', 'Captain', null, FALSE);
+VALUES ('F', 'hitter', 0, 0, 0, 0,  null, 'Captain', 6, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('G', 'hitter', 0, 0, 0, 0,  null, 'Captain', 7, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('H', 'hitter', 0, 0, 0, 0,  null, 'Captain', 8, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Q', 'pitcher', null, null, null, null, 0, 'Marvel', null, FALSE);
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kyu', 'pitcher', null, null, null, null, 0, 'Captain', null, FALSE);
 
 
 -- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (1, 'Tree', 'BALL', 1);

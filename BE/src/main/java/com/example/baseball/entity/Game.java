@@ -17,6 +17,17 @@ public class Game {
     private InningStatus inningStatus;
     private Long scoreId;
 
+    public Game(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, InningStatus inningStatus, Long scoreId) {
+        this.id = id;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+        this.inning = inning;
+        this.inningStatus = inningStatus;
+        this.scoreId = scoreId;
+    }
+
     public Long getId() {
         return id;
     }

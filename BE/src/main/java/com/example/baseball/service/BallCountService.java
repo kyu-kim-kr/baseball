@@ -23,26 +23,30 @@ public class BallCountService {
     @Transactional
     public void updateFourBallOrThreeStrike(String playerName, Long gameId) {
 
-        List<BallCount> countOfBalls = ballCountRepository.countBallCountsByBallAndPlayerName(playerName, Sbo.BALL.toString(), gameId);
+        List<BallCount> countOfBalls = ballCountRepository.countBallCountsByBallAndPlayerName(playerName, Sbo.BALL, gameId);
         int countOfBall = countOfBalls.size();
-        List<BallCount> countOfStrikes = ballCountRepository.countBallCountsByBallAndPlayerName(playerName, Sbo.STRIKE.toString(), gameId);
+        List<BallCount> countOfStrikes = ballCountRepository.countBallCountsByBallAndPlayerName(playerName, Sbo.STRIKE, gameId);
         int countOfStrike = countOfStrikes.size();
 
+        System.out.println("countOfBall = " + countOfBall);
+        System.out.println("countOfStrike = " + countOfStrike);
+
         if(countOfBall == 4) {
-            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.BALL.toString(), gameId);
-            ballCountRepository.save(new BallCount(playerName, Sbo.HIT, gameId));
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.BALL, gameId);
+            ballCountRepository.insertNewBallCount(playerName, Sbo.HIT, gameId);
 
         }
         if(countOfStrike == 3) {
-            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.HIT.toString(), gameId);
-            ballCountRepository.save(new BallCount(playerName, Sbo.OUT, gameId));
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.HIT, gameId);
+            ballCountRepository.insertNewBallCount(playerName, Sbo.OUT, gameId);
+
         }
     }
 
     @Transactional
     public int checkScore(Long gameId) {
 
-        List<BallCount> ballCounts = ballCountRepository.checkScore(Sbo.HIT.toString(), gameId);
+        List<BallCount> ballCounts = ballCountRepository.checkScore(Sbo.HIT, gameId);
         int hitNumber = ballCounts.size();
 
         if (hitNumber >= 4) {

@@ -19,24 +19,27 @@ public interface BallCountRepository extends CrudRepository<BallCount, Long> {
     List<BallCount> findAllByGameId(Long gameId);
 
     @Query("SELECT `BALL_COUNT`.`ID` AS `ID`, `BALL_COUNT`.`BALL` AS `BALL`, `BALL_COUNT`.`GAME_ID` AS `GAME_ID`, `BALL_COUNT`.`PLAYER_NAME` AS `PLAYER_NAME` FROM `BALL_COUNT` " +
-            "WHERE ball = : ball AND player_name = : playerName AND game_id = :gameId")
+            "WHERE ball = :ball AND player_name = :playerName AND game_id = :gameId")
     List<BallCount> findAllByBallAndPlayerNameAndGameId(String playerName, Sbo ball, Long gameId);
 
-    @Query("SELECT count(ball) " +
+    @Query("SELECT * " +
             "FROM ball_count " +
-            "WHERE game_id = :gameId AND player_name = :playerName AND ball = :ball " +
-            "GROUP BY game_id, player_name, ball" )
-    List<BallCount> countBallCountsByBallAndPlayerName(String playerName, String ball, Long gameId);
+            "WHERE game_id = :gameId AND player_name = :playerName AND ball = :ball ")
+    List<BallCount> countBallCountsByBallAndPlayerName(String playerName, Sbo ball, Long gameId);
 
-    @Query("SELECT count(ball) " +
+    @Query("SELECT * " +
             "FROM ball_count " +
-            "WHERE game_id = :gameId AND ball = :ball " +
-            "GROUP BY game_id, ball" )
-    List<BallCount> checkScore(String ball, Long gameId);
+            "WHERE game_id = :gameId AND ball = :ball " )
+    List<BallCount> checkScore(Sbo ball, Long gameId);
 
     @Transactional
     @Modifying
-    @Query("delete from ball_count where ball = :ball and player_name = :player_name and game_id = :gameId")
-    void deleteBallCountsByBallAndPlayerNameAndGameId(String playerName, String ball, Long gameId);
+    @Query("delete from ball_count where ball = :ball and player_name = :playerName and game_id = :gameId")
+    void deleteBallCountsByBallAndPlayerNameAndGameId(String playerName, Sbo ball, Long gameId);
+
+    @Transactional
+    @Modifying
+    @Query("INSERT INTO ball_count(player_name, ball, game_id)  values(:playerName, :ball, :gameId)")
+    void insertNewBallCount(String playerName, Sbo ball, Long gameId);
 
 }
