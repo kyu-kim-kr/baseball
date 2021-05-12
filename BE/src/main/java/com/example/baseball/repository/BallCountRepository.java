@@ -14,11 +14,11 @@ public interface BallCountRepository extends CrudRepository<BallCount, Long> {
     @Override
     List<BallCount> findAll();
 
-    @Query("SELECT `BALL_COUNT`.`ID` AS `ID`, `BALL_COUNT`.`BALL` AS `BALL`, `BALL_COUNT`.`GAME_ID` AS `GAME_ID`, `BALL_COUNT`.`PLAYER_NAME` AS `PLAYER_NAME` FROM `BALL_COUNT` " +
+    @Query("select * from `ball_count` " +
             "WHERE game_id = :gameId")
     List<BallCount> findAllByGameId(Long gameId);
 
-    @Query("SELECT `BALL_COUNT`.`ID` AS `ID`, `BALL_COUNT`.`BALL` AS `BALL`, `BALL_COUNT`.`GAME_ID` AS `GAME_ID`, `BALL_COUNT`.`PLAYER_NAME` AS `PLAYER_NAME` FROM `BALL_COUNT` " +
+    @Query("select * from `ball_count` " +
             "WHERE ball = :ball AND player_name = :playerName AND game_id = :gameId")
     List<BallCount> findAllByBallAndPlayerNameAndGameId(String playerName, Sbo ball, Long gameId);
 
