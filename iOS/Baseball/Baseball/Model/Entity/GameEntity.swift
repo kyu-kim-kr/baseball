@@ -53,6 +53,31 @@ struct Game {
     }
 }
 
+struct DetailPlayer {
+    var gameInformation: [GameInformation]
+    var players: [Player]
+    
+    init() {
+        self.gameInformation = []
+        self.players = []
+    }
+    
+    init(gameInformation: [GameInformation], players: [Player]) {
+        self.gameInformation = gameInformation
+        self.players = players
+    }
+}
+
+struct GameInformation {
+    var id: Int
+    var homeTeam: String
+    var awayTeam: String
+    var homeScore: Int
+    var awayScore: Int
+    var inning: Int // 몇회
+    var inningStatus: String // 초, 말
+}
+
 struct Player {
     var name: String
     var teamName: String

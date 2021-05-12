@@ -28,6 +28,7 @@ extension GameDTO {
                      pitcher: pitcherDTO.toDomain(),
                      ballCount: ballCountDTOs)
     }
+}
 
 struct GameScoreDTO: Decodable {
     private (set) var id: Int
@@ -128,4 +129,4 @@ struct PlayerDTO: Decodable {
 //    func toDomain() -> BallCount {
 //        return .init(id: id, ball: ball, hit: hit, gameId: gameId)
 //    }
-}
+

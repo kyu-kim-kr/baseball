@@ -19,7 +19,6 @@ class PlayerInfoView: UIView {
         didSet {
             self.pitcherLabel.text = information?.pitcher?.name
             self.numberOfPitchesLabel.text = configNumberOfPitches()
-            
             self.batterLabel.text = information?.hitter?.name
             self.atBatLabel.text = configAtBat()
         }
@@ -37,6 +36,6 @@ class PlayerInfoView: UIView {
               let formattingHit = information?.hitter?.hits else {
             return ""
         }
-        return "\(formattingatBat)타수 \(formattingHit)안타"
+        return "\(formattingatBat)타석 \(formattingHit)안타"
     }
 }
