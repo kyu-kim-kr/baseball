@@ -17,8 +17,7 @@ public class Game {
     private InningStatus inningStatus;
     private Long scoreId;
 
-    public Game(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, InningStatus inningStatus, Long scoreId) {
-        this.id = id;
+    public Game(String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, InningStatus inningStatus, Long scoreId) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;

@@ -51,4 +51,15 @@ public class GameScoreDTO {
             this.homeScore += homeScore + attackPoint;
         }
     }
+
+    @Override
+    public String toString() {
+        return "GameScoreDTO{" +
+                "id=" + id +
+                ", homeTeam='" + homeTeam + '\'' +
+                ", awayTeam='" + awayTeam + '\'' +
+                ", homeScore=" + homeScore +
+                ", awayScore=" + awayScore +
+                '}';
+    }
 }

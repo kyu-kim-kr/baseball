@@ -55,6 +55,12 @@ public class BallCountService {
         return 0;
     }
 
+    public Integer test(String playerName, Sbo ball, Long gameId) {
+        return ballCountRepository.countAllByBallAndPlayerNameAndGameId(playerName, ball, gameId);
+    }
+
+
+
 
 
 

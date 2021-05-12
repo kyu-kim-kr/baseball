@@ -32,34 +32,35 @@ public class GameScoreService {
         this.ballCountService = ballCountService;
     }
 
-    public void verifyAttackAndDefense(String inningStatus, HalfInningGameDTO halfInningGameDTO) {
-        if(inningStatus.equals(InningStatus.TOP.toString())) { //put 로직에 추가해야됨
-            attackTeam = halfInningGameDTO.getAwayTeam();
-            defenseTeam = halfInningGameDTO.getHomeTeam();
+    public void verifyAttackAndDefense(InningStatus inningStatus, GameScoreDTO gameScoreDTO) {
+        if(inningStatus.equals(InningStatus.TOP)) { //put 로직에 추가해야됨
+            attackTeam = gameScoreDTO.getAwayTeam();
+            defenseTeam = gameScoreDTO.getHomeTeam();
         }
 
-        if(inningStatus.equals(InningStatus.BOTTOM.toString())) {
-            attackTeam = halfInningGameDTO.getHomeTeam();
-            defenseTeam = halfInningGameDTO.getAwayTeam();
+        if(inningStatus.equals(InningStatus.BOTTOM)) {
+            attackTeam = gameScoreDTO.getHomeTeam();
+            defenseTeam = gameScoreDTO.getAwayTeam();
         }
     }
 
 
-    public PlayGameDTO findGameDTO(Integer inning, String inningStatus) {
+    public PlayGameDTO findGameDTO(Long listId, Integer inning, InningStatus inningStatus) {
+        GameScoreDTO gameScoreDTO = GameScoreDTO.of(scoreRepository.findById(listId).orElseThrow(IllegalArgumentException::new));
+        verifyAttackAndDefense(inningStatus, gameScoreDTO);
 
-        HalfInningGameDTO halfInningGameDTO = HalfInningGameDTO.of(gameRepository.findGameByInningAndInningStatus(inning, InningStatus.valueOf(inningStatus)).orElseThrow(IllegalArgumentException::new));
-        GameScoreDTO gameScoreDTO = GameScoreDTO
-                .of(scoreRepository.findByHomeTeamAndAwayTeam(halfInningGameDTO.getHomeTeam(), halfInningGameDTO.getAwayTeam()).orElseThrow(IllegalArgumentException::new));
+        HalfInningGameDTO halfInningGameDTO = null;
+        if(!gameRepository.findGameByInningAndInningStatus(inning, inningStatus).isPresent()) {
+            halfInningGameDTO = HalfInningGameDTO.of(gameRepository.save(new Game(gameScoreDTO.getHomeTeam(), gameScoreDTO.getAwayTeam(), 0, 0, inning, inningStatus, listId)));
+        }
+        if(gameRepository.findGameByInningAndInningStatus(inning, inningStatus).isPresent()) {
+            halfInningGameDTO = HalfInningGameDTO.of(gameRepository.findGameByInningAndInningStatus(inning, inningStatus).orElseThrow(IllegalArgumentException::new));
+        }
 
-        verifyAttackAndDefense(inningStatus, halfInningGameDTO);
+        verifyAttackAndDefense(inningStatus, gameScoreDTO);
 
         PlayerDTO pitcherDTO = PlayerDTO.of(playerRepository.findPlayerByTeamNameAndPositionIsPitcher(defenseTeam).orElseThrow(IllegalArgumentException::new));
         PlayerDTO hitterDTO = PlayerDTO.of(playerRepository.findPlayerByTeamNameAndPositionAndBattingIsFalseAndBattingOrder(attackTeam).orElseThrow(IllegalArgumentException::new));
-
-//        Player pitcher = playerRepository.findPlayerByTeamNameAndPositionIsPitcher(defenseTeam).orElseThrow(IllegalArgumentException::new);
-//        Player hitter = playerRepository.findPlayerByTeamNameAndPositionAndBattingIsFalseAndBattingOrder(attackTeam).orElseThrow(IllegalArgumentException::new);
-//        playerDTOs.add(PlayerDTO.of(pitcher));
-//        playerDTOs.add(PlayerDTO.of(hitter));
 
         List<BallCountDTO> ballCountDTOS = ballCountRepository.findAllByGameId(halfInningGameDTO.getId())
                 .stream()
@@ -72,15 +73,17 @@ public class GameScoreService {
     }
 
     @Transactional
-    public PlayGameDTO updatePitch(Integer inning, String inningStatus) {
-        PlayGameDTO nowGame = findGameDTO(inning, inningStatus);
+    public PlayGameDTO updatePitch(Long listId, Integer inning, InningStatus inningStatus) {
+        PlayGameDTO nowGame = findGameDTO(listId, inning, inningStatus);
         GameScoreDTO gameScoreDTO = nowGame.getGameScoreDTO();
         HalfInningGameDTO halfInningGameDTO = nowGame.getHalfInningGameDTO();
         PlayerDTO pitcherDTO = nowGame.getPitcherDTO();
         PlayerDTO hitterDTO = nowGame.getHitterDTO();
         List<BallCountDTO> ballCountDTOS = nowGame.getBallCountDTOs();
 
-        verifyAttackAndDefense(inningStatus, halfInningGameDTO); //attackTeam, defenseTeam
+
+
+        verifyAttackAndDefense(inningStatus, gameScoreDTO); //attackTeam, defenseTeam
 
         playerRepository.updateNumberOfPitchesAtDefenseTeamPitcher(pitcherDTO.getTeamName(), pitcherDTO.getNumberOfPitches() + 1); //투구수 증가
 
@@ -91,22 +94,23 @@ public class GameScoreService {
         System.out.println(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.HIT, halfInningGameDTO.getId()).toString());
         System.out.println(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.OUT, halfInningGameDTO.getId()).toString());
 
-        if(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.HIT, halfInningGameDTO.getId()).size() == 1) {
+        if(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.HIT, halfInningGameDTO.getId()).size()
+                + ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.OUT, halfInningGameDTO.getId()).size() == hitterDTO.getAtBat() + 1
+                || nowHit.getBall().equals(Sbo.HIT)) {
             Integer atBat = hitterDTO.getAtBat() + 1;
             Integer hits = hitterDTO.getHits() + 1;
             Integer out = hitterDTO.getOut();
             Double battingAverage = hits / (double)atBat;
             Player playerHitter = new Player(hitterDTO.getName(), hitterDTO.getTeamName(), hitterDTO.getPosition(), atBat, hits, out, battingAverage, null, hitterDTO.getBattingOrder(), hitterDTO.isBatting());
 
-
-
-
             playerHitter.changeBattingStatus(playerHitter);
             playerRepository.save(playerHitter);
-
-
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(hitterDTO.getName(), Sbo.STRIKE, halfInningGameDTO.getId());
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(hitterDTO.getName(), Sbo.BALL, halfInningGameDTO.getId());
         }
-        if(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.OUT, halfInningGameDTO.getId()).size() == 1) {
+        if(ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.HIT, halfInningGameDTO.getId()).size()
+                + ballCountRepository.countBallCountsByBallAndPlayerName(hitterDTO.getName(), Sbo.OUT, halfInningGameDTO.getId()).size() == hitterDTO.getAtBat() + 1
+                || nowHit.getBall().equals(Sbo.OUT)) {
             Integer atBat = hitterDTO.getAtBat() + 1;
             Integer hits = hitterDTO.getHits();
             Integer out = hitterDTO.getOut() + 1;
@@ -115,7 +119,8 @@ public class GameScoreService {
 
             playerHitter.changeBattingStatus(playerHitter);
             playerRepository.save(playerHitter);
-
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(hitterDTO.getName(), Sbo.STRIKE, halfInningGameDTO.getId());
+            ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(hitterDTO.getName(), Sbo.BALL, halfInningGameDTO.getId());
         }
 
         //모든 선수의 batting이 True가 되었을때, 전부 false로 바꿈
@@ -128,13 +133,13 @@ public class GameScoreService {
 
         if(inningStatus.equals(InningStatus.TOP.toString())) {
 
-            Game game = new Game(halfInningGameDTO.getId(), halfInningGameDTO.getHomeTeam(), halfInningGameDTO.getAwayTeam(), halfInningGameDTO.getHomeScore(), attackScore, inning, InningStatus.TOP, halfInningGameDTO.getScoreId());
+            Game game = new Game(halfInningGameDTO.getHomeTeam(), halfInningGameDTO.getAwayTeam(), halfInningGameDTO.getHomeScore(), attackScore, inning, InningStatus.TOP, halfInningGameDTO.getScoreId());
             Score score = new Score(gameScoreDTO.getId(), gameScoreDTO.getHomeTeam(), gameScoreDTO.getAwayTeam(), gameScoreDTO.getHomeScore(), attackScore);
             gameRepository.save(game);
             scoreRepository.save(score);
         }
         if(inningStatus.equals(InningStatus.BOTTOM.toString())) {
-            Game game = new Game(halfInningGameDTO.getId(), halfInningGameDTO.getHomeTeam(), halfInningGameDTO.getAwayTeam(), attackScore, halfInningGameDTO.getAwayScore(), inning, InningStatus.BOTTOM, halfInningGameDTO.getScoreId());
+            Game game = new Game(halfInningGameDTO.getHomeTeam(), halfInningGameDTO.getAwayTeam(), attackScore, halfInningGameDTO.getAwayScore(), inning, InningStatus.BOTTOM, halfInningGameDTO.getScoreId());
             Score score = new Score(gameScoreDTO.getId(), gameScoreDTO.getHomeTeam(), gameScoreDTO.getAwayTeam(), attackScore, gameScoreDTO.getAwayScore());
             gameRepository.save(game);
             scoreRepository.save(score);

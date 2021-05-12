@@ -27,6 +27,9 @@ public interface BallCountRepository extends CrudRepository<BallCount, Long> {
             "WHERE game_id = :gameId AND player_name = :playerName AND ball = :ball ")
     List<BallCount> countBallCountsByBallAndPlayerName(String playerName, Sbo ball, Long gameId);
 
+    Integer countAllByBallAndPlayerNameAndGameId(String playerName, Sbo ball, Long gameId);
+    //Integer countByBallAndPlayerNameAndGameId
+
     @Query("SELECT * " +
             "FROM ball_count " +
             "WHERE game_id = :gameId AND ball = :ball " )

@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface ScoreRepository extends CrudRepository<Score, Long> {
 
+    Optional<Score> findById(Long id);
+
     List<Score> findAll();
     Optional<Score> findByHomeTeamAndAwayTeam(String homeTeam, String awayTeam);
 
