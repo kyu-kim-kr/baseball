@@ -115,6 +115,6 @@ struct Player {
 struct BallCount: Decodable {
     var id: Int
     var ball: String
-    var hit: Bool
+    var playerName: String
     var gameId: Int
 }

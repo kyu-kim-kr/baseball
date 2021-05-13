@@ -17,14 +17,14 @@ class FetchingGameUseCase {
         self.network = Network()
     }
     
-    func fetchGame(gameId: Int, turn: String, inning: Int, inningStatus: String,
+    func fetchGame(gameId: Int, turn: String, inning: Int, inningStatus: String, httpMethod: HttpMethod,
                    completion: @escaping (Result<Game, Error>) -> Void) {
         
         let endPoint = GamePlayAPIEndPoint(gameId: gameId,
                                            turn: turn,
                                            inning: inning,
                                            inningStatus: inningStatus,
-                                           httpMethod: HttpMethod.get)
+                                           httpMethod: httpMethod)
         
         network.request(with: endPoint, dataType: GameDTO.self)
             .sink { (result) in
@@ -35,5 +35,5 @@ class FetchingGameUseCase {
                 completion(.success(game.toDomain()))
             }
             .store(in: &subscriptions)
-        }
+    }
 }

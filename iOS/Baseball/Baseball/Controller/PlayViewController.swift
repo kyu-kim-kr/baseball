@@ -12,14 +12,15 @@ class PlayViewController: UIViewController {
     
     @IBOutlet weak var playerInfoView: PlayerInfoView!
     @IBOutlet weak var headerView: GamePlayHeaderView!
-    @IBOutlet weak var BallCountTableView: UITableView!
-    @Published private var gameViewModel: GameViewModel!
-
+    @IBOutlet weak var ballCountTableView: UITableView!
+    @IBOutlet weak var gameScreenView: GameScreenView!
+    @Published private var gameViewModel = GameViewModel(gameId: 1, turn: "defense")
+    
     private var subscriptions = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
+        self.ballCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
         loadGame()
     }
     
@@ -30,7 +31,7 @@ class PlayViewController: UIViewController {
     func loadGame() {
         gameViewModel.fetchGame()
             .sink(receiveValue: {[weak self] game in
-                self?.BallCountTableView.reloadData()
+                self?.ballCountTableView.reloadData()
                 self?.headerView.configure(game: game ?? Game())
                 self?.playerInfoView.information = game
             })
@@ -44,7 +45,22 @@ class PlayViewController: UIViewController {
             })
             .store(in: &subscriptions)
     }
+    @IBAction func pitchButtonTouched(_ sender: UIButton) {
+//        gameViewModel.configure(gameId: 1, turn: "defense", inning: 2, inningStatus: "TOP")
+        gameViewModel.put()
+        if gameViewModel.game.ballCount.last?.ball == "HIT" {
+            gameScreenView.hit()
+        }
+        gameScreenView.setupBallCount(ball: gameViewModel.game.ballCount.last?.ball ?? "")
+    }
 }
+
+// gameID 1 -> 내가 Home 일경우
+// game/1/defense/1/TOP
+// 3out 이면 계산해서
+// game/1/attack/1/BOTTOM
+// 3out 이면 계산해서
+// game/1/defense/2/TOP
 
 extension PlayViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

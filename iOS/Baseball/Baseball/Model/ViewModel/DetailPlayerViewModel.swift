@@ -12,10 +12,14 @@ class DetailPlayerViewModel {
     
     @Published var detailPlayer: DetailPlayer
     @Published var errorMessage: String
+    var path: String
+    var teamName: String
     
     private var fetchDetailPlayerUseCase: FetchingDetailPlayerUseCase
 
     init() {
+        self.path = "away"
+        self.teamName = "Captain"
         self.detailPlayer = DetailPlayer()
         self.errorMessage = ""
         self.fetchDetailPlayerUseCase = FetchingDetailPlayerUseCase()
@@ -23,7 +27,7 @@ class DetailPlayerViewModel {
     }
     
     func request() {
-        fetchDetailPlayerUseCase.fetchDetailPlayer(path: "home", teamName: "Marvel") { (result) in
+        fetchDetailPlayerUseCase.fetchDetailPlayer(path: path, teamName: teamName) { (result) in
                 switch result {
                 case .failure(let error):
                     self.errorMessage = "\(error)"
@@ -43,5 +47,13 @@ class DetailPlayerViewModel {
         return $errorMessage
             .dropFirst()
             .eraseToAnyPublisher()
+    }
+    
+    func count() -> Int {
+        detailPlayer.players.count
+    }
+    
+    func getPlayer(indexPath: IndexPath) -> Player {
+        return detailPlayer.players[indexPath.row]
     }
 }

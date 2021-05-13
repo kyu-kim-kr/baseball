@@ -27,7 +27,7 @@ class Network {
             .eraseToAnyPublisher()
     }
     
-    func post<T: Encodable> (with endPoint: Requestable, dataType: T)
+    func put<T: Encodable> (with endPoint: Requestable, dataType: T)
     -> AnyPublisher<Int, NetworkError> {
         guard let url = endPoint.url() else {
             let error = NetworkError.network(description: "Couldn't Create URL")
@@ -97,4 +97,5 @@ enum NetworkError: Error {
 public enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
+    case put = "PUT"
 }

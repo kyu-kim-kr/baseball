@@ -24,4 +24,21 @@ class PlayerInformationCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
+    var player: Player? {
+        didSet {
+            guard let atBat = player?.atBat,
+                  let hits = player?.hits,
+                  let out = player?.out,
+                  let average = player?.battingAverage else {
+                return
+            }
+            
+            self.nameLabel.text = player?.name
+            self.atBatLabel.text = "\(atBat)"
+            self.hitLabel.text = "\(hits)"
+            self.outLabel.text = "\(out)"
+            self.battingAverageLabel.text = "\(average)"
+        }
+    }
 }

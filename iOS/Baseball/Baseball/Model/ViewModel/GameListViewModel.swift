@@ -14,7 +14,6 @@ class GameListViewModel {
     @Published var errorMessage: String
     private var fetchGameListUseCase: FetchingGameListUseCase
 
-    
     init() {
         self.gameList = []
         self.errorMessage = ""

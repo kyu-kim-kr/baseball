@@ -11,9 +11,9 @@ class GameTabBarController: UITabBarController {
     
     var gameId: Int?
     var turn: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     func configure(gameId: Int, turn: String) {

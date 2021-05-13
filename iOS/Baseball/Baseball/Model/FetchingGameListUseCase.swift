@@ -21,7 +21,6 @@ class FetchingGameListUseCase {
     
 
     func fetchGameList(completion: @escaping (Result<[GameList], Error>)->Void) {
-        // 변경 필요한 부분 DTO로
         network.request(with: requestable, dataType: GameListDTO.self)
             .sink { (result) in
                 switch result {

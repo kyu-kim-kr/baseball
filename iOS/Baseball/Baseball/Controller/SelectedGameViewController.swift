@@ -36,18 +36,22 @@ class SelectedGameViewController: UIViewController {
         // path로 attack, gameId이 날아가도록 해야한다.
         viewController.modalPresentationStyle = .fullScreen
         self.present(viewController, animated: true, completion: {
-            guard let vc = viewController as? PlayViewController else {
+            guard let vc = viewController as? GameTabBarController else {
                 return
             }
-            vc.configure(gameId: self.game?.gameNo ?? 1, turn: "TOP")
+            vc.configure(gameId: self.game?.gameNo ?? 1, turn: "attack")
         })
     }
     
     @IBAction func homeButtomTouched(_ sender: UIButton) {
-        
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "GameTabBarController")
         // path로 defense, gameId가 날아가도록 해야한다.
         viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true, completion: nil)
+        self.present(viewController, animated: true, completion: {
+            guard let vc = viewController as? GameTabBarController else {
+                return
+            }
+            vc.configure(gameId: self.game?.gameNo ?? 1, turn: "defense")
+        })
     }
 }

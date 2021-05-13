@@ -33,8 +33,26 @@ class GameViewModel {
         self.init(gameId: gameId, turn: turn, inning: 1, inningStatus: "TOP", fetchgame: FetchingGameUseCase())
     }
     
+    func configure(gameId: Int, turn: String, inning: Int, inningStatus: String) {
+        self.gameId = gameId
+        self.turn = turn
+        self.inning = inning
+        self.inningStatus = inningStatus
+    }
+    
     func request() {
-        fetchGameUseCase.fetchGame(gameId: gameId, turn: turn, inning: inning, inningStatus: inningStatus) { (result) in
+        fetchGameUseCase.fetchGame(gameId: gameId, turn: turn, inning: inning, inningStatus: inningStatus, httpMethod: HttpMethod.get) { (result) in
+            switch result {
+            case .failure(let error):
+                self.errorMessage = "\(error)"
+            case .success(let game):
+                self.game = game
+            }
+        }
+    }
+    
+    func put() {
+        fetchGameUseCase.fetchGame(gameId: gameId, turn: turn, inning: inning, inningStatus: inningStatus, httpMethod: HttpMethod.put) { (result) in
             switch result {
             case .failure(let error):
                 self.errorMessage = "\(error)"
@@ -62,7 +80,7 @@ class GameViewModel {
     
     func calculateBallCount() -> [Int] {
         var ballCount = [0,0,0]
-        
+
         game.ballCount.forEach {
             if $0.ball == "STRIKE" {
                 ballCount[0] += 1
