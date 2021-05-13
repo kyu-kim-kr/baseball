@@ -15,90 +15,213 @@ INSERT INTO `baseball`.`score` (`id`, `home_team`, `away_team`, `home_score`, `a
 INSERT INTO `baseball`.`score` (`id`, `home_team`, `away_team`, `home_score`, `away_score`) VALUES (4, 'Pintos', 'Heros', 0, 0);
 
 
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(1, 'Marvel', 'Captain', 0, 0, 1, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(2, 'Marvel', 'Captain', 2, 0, 1, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(3, 'Marvel', 'Captain', 0, 1, 2, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(4, 'Marvel', 'Captain', 3, 0, 2, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(5, 'Marvel', 'Captain', 0, 1, 3, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(6, 'Marvel', 'Captain', 3, 0, 3, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(7, 'Marvel', 'Captain', 0, 1, 4, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(8, 'Marvel', 'Captain', 3, 0, 4, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(9, 'Marvel', 'Captain', 0, 1, 5, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(10, 'Marvel', 'Captain', 3, 0, 5, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(11, 'Marvel', 'Captain', 0, 1, 6, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(12, 'Marvel', 'Captain', 3, 0, 6, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(13, 'Marvel', 'Captain', 0, 1, 7, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(14, 'Marvel', 'Captain', 3, 0, 7, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(15, 'Marvel', 'Captain', 0, 1, 8, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(16, 'Marvel', 'Captain', 3, 0, 8, 'BOTTOM', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(17, 'Marvel', 'Captain', 0, 1, 9, 'TOP', 1);
--- INSERT INTO game(id, home_team, away_team, home_score, away_score, inning, inning_status, score_id) values(18, 'Marvel', 'Captain', 3, 0, 9, 'BOTTOM', 1);
-
-
-
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('bat', 'hitter', 0, 0, 0, 0.433, null, 'Captain', 1, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cA', 'hitter', 0, 0, 0, 0, null, 'Captain', 1, FALSE);
+VALUES ('Bibi', 'hitter', 0, 0, 0, 0.535, null, 'Captain', 2, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cB', 'hitter', 0, 0, 0, 0.535, null, 'Captain', 2, FALSE);
+VALUES ('Bongf', 'hitter', 0, 0, 0, 0.123, null, 'Captain', 3, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cC', 'hitter', 0, 0, 0, 0, null, 'Captain', 3, FALSE );
+VALUES ('Cooper', 'hitter', 0, 0, 0, 0.542,  null, 'Captain', 4, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cD', 'hitter', 0, 0, 0, 0,  null, 'Captain', 4, FALSE );
+VALUES ('Honux', 'hitter', 0, 0, 0, 0.254,  null, 'Captain', 5, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cE', 'hitter', 0, 0, 0, 0,  null, 'Captain', 5, FALSE );
+VALUES ('JK', 'hitter', 0, 0, 0, 0.431,  null, 'Captain', 6, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cF', 'hitter', 0, 0, 0, 0,  null, 'Captain', 6, FALSE );
+VALUES ('K', 'hitter', 0, 0, 0, 0.541,  null, 'Captain', 7, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cG', 'hitter', 0, 0, 0, 0,  null, 'Captain', 7, FALSE );
+VALUES ('Kyu', 'hitter', 0, 0, 0, 0.312,  null, 'Captain', 8, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cH', 'hitter', 0, 0, 0, 0,  null, 'Captain', 8, FALSE );
+VALUES ('Pyro', 'hitter', 0, 0, 0, 0.654,  null, 'Captain', 9, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('cI', 'hitter', 0, 0, 0, 0,  null, 'Captain', 9, FALSE );
-
-INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('captainP', 'pitcher', null, null, null, null, 0, 'Captain', null, FALSE);
+VALUES ('Shion', 'pitcher', null, null, null, null, 5, 'Captain', null, FALSE);
 ---------
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mA', 'hitter', 0, 0, 0, 0, null, 'Marvel', 1, FALSE);
+VALUES ('yeon', 'hitter', 0, 0, 0, 0.322, null, 'Marvel', 1, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mB', 'hitter', 0, 0, 0, 0.535, null, 'Marvel', 2, FALSE);
+VALUES ('Dong', 'hitter', 0, 0, 0, 0.535, null, 'Marvel', 2, FALSE);
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mC', 'hitter', 0, 0, 0, 0, null, 'Marvel', 3, FALSE );
+VALUES ('Nas', 'hitter', 0, 0, 0, 0.434, null, 'Marvel', 3, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mD', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 4, FALSE );
+VALUES ('마르코', 'hitter', 0, 0, 0, 0.132,  null, 'Marvel', 4, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mE', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 5, FALSE );
+VALUES ('노을', 'hitter', 0, 0, 0, 0.227,  null, 'Marvel', 5, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mF', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 6, FALSE );
+VALUES ('MJ', 'hitter', 0, 0, 0, 0.452,  null, 'Marvel', 6, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mG', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 7, FALSE );
+VALUES ('Woody', 'hitter', 0, 0, 0, 0.423,  null, 'Marvel', 7, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mH', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 8, FALSE );
+VALUES ('Robin', 'hitter', 0, 0, 0, 0.253,  null, 'Marvel', 8, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('mI', 'hitter', 0, 0, 0, 0,  null, 'Marvel', 9, FALSE );
+VALUES ('프레디', 'hitter', 0, 0, 0, 0.433,  null, 'Marvel', 9, FALSE );
 
 INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
-VALUES ('marvelP', 'pitcher', null, null, null, null, 0, 'Marvel', null, FALSE);
+VALUES ('이노', 'pitcher', null, null, null, null, 3, 'Marvel', null, FALSE);
 
 
--- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (1, 'Tree', 'BALL', 1);
--- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (2, 'Tree', 'BALL', 1);
--- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (3, 'Tree', 'BALL' , 1);
--- INSERT INTO `baseball`.`ball_count` (`id`, `player_name`, `ball`, `game_id`) VALUES (4, 'Tree', 'BALL' , 1);
+
+
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Hong', 'hitter', 0, 0, 0, 0, null, 'Twins', 1, FALSE);
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Issac', 'hitter', 0, 0, 0, 0.535, null, 'Twins', 2, FALSE);
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('V', 'hitter', 0, 0, 0, 0, null, 'Twins', 3, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('JeJe', 'hitter', 0, 0, 0, 0,  null, 'Twins', 4, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lollo', 'hitter', 0, 0, 0, 0,  null, 'Twins', 5, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('쏭', 'hitter', 0, 0, 0, 0,  null, 'Twins', 6, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('쑤', 'hitter', 0, 0, 0, 0,  null, 'Twins', 7, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Ray', 'hitter', 0, 0, 0, 0,  null, 'Twins', 8, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Dumba', 'hitter', 0, 0, 0, 0,  null, 'Twins', 9, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Min', 'pitcher', null, null, null, null, 0, 'Twins', null, FALSE);
+---------
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('BMO', 'hitter', 0, 0, 0, 0, null, 'Tigers', 1, FALSE);
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Zeke', 'hitter', 0, 0, 0, 0.535, null, 'Tigers', 2, FALSE);
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Cri', 'hitter', 0, 0, 0, 0, null, 'Tigers', 3, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('엘리', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 4, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('만사', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 5, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lia', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 6, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('ZG', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 7, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Aiden', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 8, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Downey', 'hitter', 0, 0, 0, 0,  null, 'Tigers', 9, FALSE );
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('잭슨', 'pitcher', null, null, null, null, 0, 'Tigers', null, FALSE);
+
+
+
+
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Park kyudong', 'hitter', 0, 0, 0, 0, null, 'Rockets', 1, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee youngmin', 'hitter', 0, 0, 0, 0.535, null, 'Rockets', 2, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee hyungsu', 'hitter', 0, 0, 0, 0, null, 'Rockets', 3, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Shin dongmin', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 4, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Choi sungkyu', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 5, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee junghyun', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 6, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kim dohyun', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 7, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Yun junho', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 8, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Han junghun', 'hitter', 0, 0, 0, 0,  null, 'Rockets', 9, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Jung sunghun', 'pitcher', null, null, null, null, 0, 'Rockets', null, FALSE);
+---------
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Scott Alexander', 'hitter', 0, 0, 0, 0, null, 'Dodgers', 1, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Trevor Bauer', 'hitter', 0, 0, 0, 0.535, null, 'Dodgers', 2, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Walker Buehler', 'hitter', 0, 0, 0, 0, null, 'Dodgers', 3, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Gerardo Carrillo', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 4, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Garett Cleavinger', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 5, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Jimmy Nelson', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 6, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Tony Gonsolin', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 7, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Victor Gonzalez', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 8, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Brusdar Graterol', 'hitter', 0, 0, 0, 0,  null, 'Dodgers', 9, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Austin Barnes', 'pitcher', null, null, null, null, 0, 'Dodgers', null, FALSE);
+----------
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee jiyoung', 'hitter', 0, 0, 0, 0, null, 'Heros', 1, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Seo geongchang', 'hitter', 0, 0, 0, 0.535, null, 'Heros', 2, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Heo junghyup', 'hitter', 0, 0, 0, 0, null, 'Heros', 3, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Park juntae', 'hitter', 0, 0, 0, 0,  null, 'Heros', 4, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee junghoo', 'hitter', 0, 0, 0, 0,  null, 'Heros', 5, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kim hasung', 'hitter', 0, 0, 0, 0,  null, 'Heros', 6, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Jun bungwoo', 'hitter', 0, 0, 0, 0,  null, 'Heros', 7, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kim hyesung', 'hitter', 0, 0, 0, 0,  null, 'Heros', 8, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Park dongwon', 'hitter', 0, 0, 0, 0,  null, 'Heros', 9, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Eric Spenser Jokisch', 'pitcher', null, null, null, null, 0, 'Heros', null, FALSE);
+---------
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Yang seungkwan', 'hitter', 0, 0, 0, 0, null, 'Pintos', 1, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Woo gyeongha', 'hitter', 0, 0, 0, 0.535, null, 'Pintos', 2, FALSE);
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee haechang', 'hitter', 0, 0, 0, 0, null, 'Pintos', 3, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Jeong hyeonbal', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 4, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kwon doojo', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 5, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Lee sungwong', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 6, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Jung jinho', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 7, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kim baywi', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 8, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Kim donggi', 'hitter', 0, 0, 0, 0,  null, 'Pintos', 9, FALSE );
+INSERT INTO `baseball`.`player` (`name`, `position`, `at_bat`, `hits`, `out`, `batting_average`, `number_of_pitches`, `team_name`, `batting_order`, `is_batting`)
+VALUES ('Yang sangmoon', 'pitcher', null, null, null, null, 0, 'Pintos', null, FALSE);
