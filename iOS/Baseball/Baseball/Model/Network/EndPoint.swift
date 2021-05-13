@@ -34,8 +34,9 @@ public struct GamePlayAPIEndPoint: Requestable {
     public let path: String
     public let httpMethod: HttpMethod
     
-    init(path: String, inning: Int, inningStatus: String, httpMethod: HttpMethod) {
-        self.path = "\(path)/" + "\(inning)/" + inningStatus
+    // 맨앞에 게임아이디 들어가야함
+    init(gameId: Int, turn: String, inning: Int, inningStatus: String, httpMethod: HttpMethod) {
+        self.path = "\(turn)/" + "\(turn)/" + "\(inning)/" + inningStatus
         self.httpMethod = httpMethod
     }
     
@@ -49,8 +50,8 @@ public struct GameDetailScoreAPIEndPoint: Requestable {
     public let path: String
     public let httpMethod: HttpMethod
     
-    init(path: String, gameId: Int, Team: String, httpMethod: HttpMethod) {
-        self.path = "\(gameId)/" + Team
+    init(path: String, teamName: String, httpMethod: HttpMethod) {
+        self.path = "\(path)/" + teamName
         self.httpMethod = httpMethod
     }
     

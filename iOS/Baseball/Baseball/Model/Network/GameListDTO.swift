@@ -13,7 +13,7 @@ extension GameListDTO {
         private let awayTeam: String
         
         func toDomain() -> GameList {
-            return .init(gameNo: "GAME \(id)", homeTeam: homeTeam, awayTeam: awayTeam)
+            return .init(gameNo: id, homeTeam: homeTeam, awayTeam: awayTeam)
         }
     }
     

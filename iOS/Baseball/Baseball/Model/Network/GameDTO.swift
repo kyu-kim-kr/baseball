@@ -18,8 +18,8 @@ struct GameDTO: Decodable {
 extension GameDTO {
     func toDomain() -> Game {
         return .init(id: halfInningGameDTO.id,
-                     home: halfInningGameDTO.homeTeam,
-                     away: halfInningGameDTO.awayTeam,
+                     homeTeam: halfInningGameDTO.homeTeam,
+                     awayTeam: halfInningGameDTO.awayTeam,
                      homeScore: halfInningGameDTO.homeScore,
                      awayScore: halfInningGameDTO.awayScore,
                      inning: halfInningGameDTO.inning,

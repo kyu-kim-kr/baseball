@@ -9,7 +9,7 @@ import Foundation
 
 struct DetailPlayerDTO: Decodable {
     private (set) var gameScoreResponseDTO: GameScoreDTO
-    private (set) var halfInningGameDTOS: [GameInformationDTO]
+    private (set) var halfInningGameDTOs: [GameInformationDTO]
     private (set) var playerResponseDTOS: [PlayerDTO]
 }
 
@@ -20,7 +20,7 @@ extension DetailPlayerDTO {
     }
     
     func toDomainGameInformation() -> [GameInformation] {
-        let gameInformation = halfInningGameDTOS.map { gameInfo in
+        let gameInformation = halfInningGameDTOs.map { gameInfo in
             GameInformation(id: gameInfo.id, homeTeam: gameInfo.homeTeam, awayTeam: gameInfo.awayTeam,
                             homeScore: gameInfo.homeScore, awayScore: gameInfo.awayScore, inning: gameInfo.inning,
                             inningStatus: gameInfo.inningStatus)

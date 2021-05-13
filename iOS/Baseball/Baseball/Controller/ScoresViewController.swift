@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ScoresViewController: UIViewController {
     
@@ -14,10 +15,31 @@ class ScoresViewController: UIViewController {
     @IBOutlet var homeScoreLabel: [UILabel]!
     @IBOutlet weak var playerInformationTableView: UITableView!
     
+    @Published private var detailPlayerViewModel = DetailPlayerViewModel()
+    private var subscriptions = Set<AnyCancellable>()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.playerInformationTableView.register(PlayerInformationCell.nib, forCellReuseIdentifier: PlayerInformationCell.identifier)
-        self.headerView.header = Game()
+        self.playerInformationTableView.register(PlayerInformationCell.nib,
+                                                 forCellReuseIdentifier: PlayerInformationCell.identifier)
+        loadDetailPlayer()
+    }
+    
+    func loadDetailPlayer() {
+        detailPlayerViewModel.fetchDetailPlayer()
+            .sink(receiveValue: {[weak self] detailPlayer in
+                self?.playerInformationTableView.reloadData()
+                self?.headerView.configure2(gameInformaion: detailPlayer.gameInformation.last ?? GameInformation())
+            })
+            .store(in: &subscriptions)
+        
+        detailPlayerViewModel.except()
+            .sink(receiveValue: {[weak self] error in
+                DispatchQueue.main.async {
+                    self?.present(Alert.showErrorAlert(error: error), animated: true, completion: nil)
+                }
+            })
+            .store(in: &subscriptions)
     }
 }
 
@@ -32,6 +54,4 @@ extension ScoresViewController: UITableViewDataSource {
         }
         return cell
     }
-    
-    
 }

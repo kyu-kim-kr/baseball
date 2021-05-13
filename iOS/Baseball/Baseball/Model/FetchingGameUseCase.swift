@@ -17,10 +17,11 @@ class FetchingGameUseCase {
         self.network = Network()
     }
     
-    func fetchGame(path: String, inning: Int, inningStatus: String,
+    func fetchGame(gameId: Int, turn: String, inning: Int, inningStatus: String,
                    completion: @escaping (Result<Game, Error>) -> Void) {
         
-        let endPoint = GamePlayAPIEndPoint(path: path,
+        let endPoint = GamePlayAPIEndPoint(gameId: gameId,
+                                           turn: turn,
                                            inning: inning,
                                            inningStatus: inningStatus,
                                            httpMethod: HttpMethod.get)

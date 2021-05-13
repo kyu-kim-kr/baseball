@@ -12,27 +12,29 @@ class GameViewModel {
     
     @Published var game: Game!
     @Published var errorMessage: String
-    private var path: String
+    private var gameId: Int
+    private var turn: String
     private var inning: Int
     private var inningStatus: String
     private var fetchGameUseCase: FetchingGameUseCase
     
-    init(path: String, inning: Int, inningStatus: String, fetchgame: FetchingGameUseCase) {
+    init(gameId: Int, turn: String, inning: Int, inningStatus: String, fetchgame: FetchingGameUseCase) {
         self.game = Game()
         self.errorMessage = ""
-        self.path = path
+        self.gameId = gameId
+        self.turn = turn
         self.inning = inning
         self.inningStatus = inningStatus
         self.fetchGameUseCase = FetchingGameUseCase()
         request()
     }
     
-    convenience init() {
-        self.init(path: "attack", inning: 1, inningStatus: "TOP", fetchgame: FetchingGameUseCase())
+    convenience init(gameId: Int, turn: String) {
+        self.init(gameId: gameId, turn: turn, inning: 1, inningStatus: "TOP", fetchgame: FetchingGameUseCase())
     }
     
     func request() {
-        fetchGameUseCase.fetchGame(path: path, inning: inning, inningStatus: inningStatus) { (result) in
+        fetchGameUseCase.fetchGame(gameId: gameId, turn: turn, inning: inning, inningStatus: inningStatus) { (result) in
             switch result {
             case .failure(let error):
                 self.errorMessage = "\(error)"

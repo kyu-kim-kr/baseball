@@ -8,15 +8,15 @@
 import Foundation
 
 struct GameList{
-    var gameNo: String
+    var gameNo: Int
     var homeTeam: String
     var awayTeam: String
 }
 
 struct Game {
     var id: Int
-    var home: String
-    var away: String
+    var homeTeam: String
+    var awayTeam: String
     var homeScore: Int
     var awayScore: Int
     var inning: Int // 몇회
@@ -27,8 +27,8 @@ struct Game {
     
     init() {
         self.id = 0
-        self.home = ""
-        self.away = ""
+        self.homeTeam = ""
+        self.awayTeam = ""
         self.homeScore = 0
         self.awayScore = 0
         self.inning = 0
@@ -38,11 +38,11 @@ struct Game {
         self.ballCount = []
     }
     
-    init(id: Int, home: String, away: String, homeScore: Int, awayScore: Int, inning: Int, inningStatus: String,
+    init(id: Int, homeTeam: String, awayTeam: String, homeScore: Int, awayScore: Int, inning: Int, inningStatus: String,
          hitter: Player, pitcher: Player, ballCount: [BallCount]) {
         self.id = id
-        self.home = home
-        self.away = away
+        self.homeTeam = homeTeam
+        self.awayTeam = awayTeam
         self.homeScore = homeScore
         self.awayScore = awayScore
         self.inning = inning
@@ -76,6 +76,27 @@ struct GameInformation {
     var awayScore: Int
     var inning: Int // 몇회
     var inningStatus: String // 초, 말
+    
+    init() {
+        self.id = 0
+        self.homeTeam = ""
+        self.awayTeam = ""
+        self.homeScore = 0
+        self.awayScore = 0
+        self.inning = 0
+        self.inningStatus = ""
+    }
+    
+    init(id: Int, homeTeam: String, awayTeam: String, homeScore: Int, awayScore: Int, inning: Int, inningStatus: String) {
+        self.id = id
+        self.homeTeam = homeTeam
+        self.awayTeam = awayTeam
+        self.homeScore = homeScore
+        self.awayScore = awayScore
+        self.inning = inning
+        self.inningStatus = inningStatus
+    }
+    
 }
 
 struct Player {

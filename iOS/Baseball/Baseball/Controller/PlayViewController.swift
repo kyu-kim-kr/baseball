@@ -13,22 +13,25 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var playerInfoView: PlayerInfoView!
     @IBOutlet weak var headerView: GamePlayHeaderView!
     @IBOutlet weak var BallCountTableView: UITableView!
-    @Published private var gameViewModel = GameViewModel()
+    @Published private var gameViewModel: GameViewModel!
+
     private var subscriptions = Set<AnyCancellable>()
-    var path: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.BallCountTableView.register(BallCountCell.nib, forCellReuseIdentifier: BallCountCell.identifier)
         loadGame()
-        
+    }
+    
+    func configure(gameId: Int, turn: String) {
+        gameViewModel = GameViewModel(gameId: gameId, turn: turn)
     }
     
     func loadGame() {
         gameViewModel.fetchGame()
             .sink(receiveValue: {[weak self] game in
                 self?.BallCountTableView.reloadData()
-                self?.headerView.header = game
+                self?.headerView.configure(game: game ?? Game())
                 self?.playerInfoView.information = game
             })
             .store(in: &subscriptions)
