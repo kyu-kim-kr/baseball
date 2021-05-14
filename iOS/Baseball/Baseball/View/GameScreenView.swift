@@ -245,7 +245,7 @@ class GameScreenView: UIView {
     }
     
     func setupBallCount(ball: String) {
-        print(ball)
+ 
         if ball == "STRIKE" && strikeNum < 2{
             strikeCount[strikeNum].backgroundColor = UIColor.systemYellow
             strikeNum += 1
