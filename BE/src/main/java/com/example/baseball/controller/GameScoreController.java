@@ -3,10 +3,7 @@ package com.example.baseball.controller;
 import com.example.baseball.dto.PlayGameDTO;
 import com.example.baseball.entity.InningStatus;
 import com.example.baseball.service.GameScoreService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GameScoreController {
@@ -31,6 +28,7 @@ public class GameScoreController {
     public PlayGameDTO updatePitch(@PathVariable Long listId, @PathVariable Integer inning, @PathVariable InningStatus inningStatus) {
         return gameScoreService.updatePitch(listId, inning, inningStatus);
     }
+
 
 
 }

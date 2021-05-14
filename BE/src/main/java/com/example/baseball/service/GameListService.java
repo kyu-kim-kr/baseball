@@ -1,9 +1,7 @@
 package com.example.baseball.service;
 
 import com.example.baseball.dto.MatchedListDTO;
-import com.example.baseball.entity.Game;
 import com.example.baseball.dto.MatchedTeamDTO;
-import com.example.baseball.repository.GameRepository;
 import com.example.baseball.repository.ScoreRepository;
 import org.springframework.stereotype.Service;
 

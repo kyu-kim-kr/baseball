@@ -1,15 +1,12 @@
 package com.example.baseball.service;
 
-import com.example.baseball.dto.BallCountDTO;
 import com.example.baseball.entity.BallCount;
 import com.example.baseball.entity.Sbo;
 import com.example.baseball.repository.BallCountRepository;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BallCountService {
@@ -28,13 +25,9 @@ public class BallCountService {
         List<BallCount> countOfStrikes = ballCountRepository.countBallCountsByBallAndPlayerName(playerName, Sbo.STRIKE, gameId);
         int countOfStrike = countOfStrikes.size();
 
-        System.out.println("countOfBall = " + countOfBall);
-        System.out.println("countOfStrike = " + countOfStrike);
-
         if(countOfBall == 4) {
             ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.BALL, gameId);
             ballCountRepository.insertNewBallCount(playerName, Sbo.HIT, gameId);
-
         }
         if(countOfStrike == 3) {
             ballCountRepository.deleteBallCountsByBallAndPlayerNameAndGameId(playerName, Sbo.HIT, gameId);
@@ -55,14 +48,7 @@ public class BallCountService {
         return 0;
     }
 
-    public Integer test(String playerName, Sbo ball, Long gameId) {
-        return ballCountRepository.countAllByBallAndPlayerNameAndGameId(playerName, ball, gameId);
+    public void deleteBallCount() {
+        ballCountRepository.deleteAll();
     }
-
-
-
-
-
-
-
 }

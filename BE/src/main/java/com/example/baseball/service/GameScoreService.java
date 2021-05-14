@@ -21,9 +21,6 @@ public class GameScoreService {
     private BallCountRepository ballCountRepository;
     private BallCountService ballCountService;
 
-    String attackTeam = ""; //inningStatus가 TOP일때는 away
-    String defenseTeam = "";
-
     public GameScoreService(GameRepository gameRepository, ScoreRepository scoreRepository, PlayerRepository playerRepository, BallCountRepository ballCountRepository, BallCountService ballCountService) {
         this.gameRepository = gameRepository;
         this.scoreRepository = scoreRepository;
@@ -31,6 +28,9 @@ public class GameScoreService {
         this.ballCountRepository = ballCountRepository;
         this.ballCountService = ballCountService;
     }
+
+    String attackTeam = ""; //inningStatus가 TOP일때는 away
+    String defenseTeam = "";
 
     public void verifyAttackAndDefense(InningStatus inningStatus, GameScoreDTO gameScoreDTO) {
         if(inningStatus.equals(InningStatus.TOP)) { //put 로직에 추가해야됨
@@ -67,9 +67,7 @@ public class GameScoreService {
                 .map(ballCount -> BallCountDTO.of(ballCount))
                 .collect(Collectors.toList());
 
-        PlayGameDTO gameDTO = new PlayGameDTO(gameScoreDTO, halfInningGameDTO, pitcherDTO, hitterDTO, ballCountDTOS);
-
-        return gameDTO;
+        return new PlayGameDTO(gameScoreDTO, halfInningGameDTO, pitcherDTO, hitterDTO, ballCountDTOS);
     }
 
     @Transactional
