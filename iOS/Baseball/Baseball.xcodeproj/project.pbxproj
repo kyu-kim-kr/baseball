@@ -42,6 +42,7 @@
 		D4AC17C3264C3483006D10DC /* DetailPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC17C2264C3483006D10DC /* DetailPlayerViewModel.swift */; };
 		D4AC17C8264C3517006D10DC /* FetchingDetailPlayerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC17C7264C3517006D10DC /* FetchingDetailPlayerUseCase.swift */; };
 		D4AC17CD264CDA0C006D10DC /* GameTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AC17CC264CDA0C006D10DC /* GameTabBarController.swift */; };
+		D4AC17FB264E4127006D10DC /* hitSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = D4AC17FA264E4127006D10DC /* hitSound.wav */; };
 		E021C1CF5AE375C2F9300D39 /* Pods_Baseball_BaseballUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D46EADD93F895BD0D709A0 /* Pods_Baseball_BaseballUITests.framework */; };
 		E251DC6CD0176A2C568BC3AD /* Pods_Baseball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D159143F731D8C2D8DDBDE86 /* Pods_Baseball.framework */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		D4AC17C2264C3483006D10DC /* DetailPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPlayerViewModel.swift; sourceTree = "<group>"; };
 		D4AC17C7264C3517006D10DC /* FetchingDetailPlayerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingDetailPlayerUseCase.swift; sourceTree = "<group>"; };
 		D4AC17CC264CDA0C006D10DC /* GameTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTabBarController.swift; sourceTree = "<group>"; };
+		D4AC17FA264E4127006D10DC /* hitSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitSound.wav; sourceTree = "<group>"; };
 		F745F685E4AD5287ABA0F515 /* Pods-Baseball-BaseballUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Baseball-BaseballUITests.release.xcconfig"; path = "Target Support Files/Pods-Baseball-BaseballUITests/Pods-Baseball-BaseballUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,6 +256,7 @@
 		D4A2CB662640E4FD0019AFB6 /* Baseball */ = {
 			isa = PBXGroup;
 			children = (
+				D4AC17F9264E4119006D10DC /* Sound */,
 				BD8A23722643C48400828432 /* LifeCycle */,
 				BD8A23712643C47C00828432 /* Model */,
 				BD8A23702643C47200828432 /* View */,
@@ -300,6 +303,14 @@
 				D4AC17C2264C3483006D10DC /* DetailPlayerViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D4AC17F9264E4119006D10DC /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				D4AC17FA264E4127006D10DC /* hitSound.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +425,7 @@
 				BD8A237B2644F8EB00828432 /* PlayerInformationCell.xib in Resources */,
 				D4A2CB712640E4FF0019AFB6 /* Assets.xcassets in Resources */,
 				D4A2CB6F2640E4FD0019AFB6 /* Main.storyboard in Resources */,
+				D4AC17FB264E4127006D10DC /* hitSound.wav in Resources */,
 				BD8A237F264508F800828432 /* BallCountCell.xib in Resources */,
 				D4A2CB9D2640E5E60019AFB6 /* GameListCell.xib in Resources */,
 			);

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameScreenView: UIView {
 
@@ -16,6 +17,7 @@ class GameScreenView: UIView {
     private var ballNum = 0
     private var outNum = 0
     
+    private var audioPlayer = AVAudioPlayer()
     private var batterArr: [CALayer] = []
     private var hitter = CALayer()
     private let emojiArray = ["🐶", "🐴", "🦑", "🎄", "🐳", "🐙", "🐥", "🐷", "🦁", "🐯", "🐏"]
@@ -291,16 +293,27 @@ class GameScreenView: UIView {
             }
             strikeNum = 0
             ballNum = 0
-
+            
+            
             let imageView = UIImageView(frame: CGRect(x: self.frame.width/2, y: self.frame.height/2, width: 0, height: 0))
             imageView.image = UIImage(named: "hit.jpeg")
             self.addSubview(imageView)
+            makeHitSound()
             UIImageView.animate(withDuration: 1, delay: 0, options: .transitionFlipFromLeft, animations: {
                 imageView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
             }, completion: { finish in
                 imageView.removeFromSuperview()
             })
         }
+    }
+    
+    func makeHitSound() {
+        guard let url = Bundle.main.url(forResource: "hitSound", withExtension: "wav") else {
+            return
+        }
+        
+        audioPlayer = try! AVAudioPlayer(contentsOf: url)
+        audioPlayer.play()
     }
 }
 
