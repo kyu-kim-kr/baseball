@@ -1,10 +1,8 @@
 package com.example.baseball.dto;
 
-import com.example.baseball.entity.Game;
-import org.springframework.data.annotation.Id;
+import com.example.baseball.entity.Score;
 
 public class MatchedTeamDTO {
-    @Id
     private Long id;
 
     private String homeTeam;
@@ -28,8 +26,8 @@ public class MatchedTeamDTO {
         return awayTeam;
     }
 
-    public static MatchedTeamDTO of(Game game) {
-        return new MatchedTeamDTO(game.getId(), game.getHomeTeam(), game.getAwayTeam());
+    public static MatchedTeamDTO of(Score score) {
+        return new MatchedTeamDTO(score.getId(), score.getHomeTeam(), score.getAwayTeam());
     }
 
 }

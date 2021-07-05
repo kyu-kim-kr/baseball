@@ -1,22 +1,20 @@
 package com.example.baseball.dto;
 
-import com.example.baseball.entity.Game;
 import com.example.baseball.entity.Player;
 
-public class PlayerResponseDTO {
+public class PlayerDTO {
     private String name;
     private String teamName;
     private String position;
-    private String atBat; //타석
-    private int hits;
-    private int out;
-    private double battingAverage; //타율
-    private int numberOfPitches; //투구수
-    private int battingOrder; //타석 나가는 순서
+    private Integer atBat; //타석
+    private Integer hits;
+    private Integer out;
+    private Double battingAverage; //타율
+    private Integer numberOfPitches; //투구수
+    private Integer battingOrder; //타석 나가는 순서
     private boolean isBatting; //공격 차례에서 타석에 나갔는지 안나갔는지 체크
 
-
-    public PlayerResponseDTO(String name, String teamName, String position, String atBat, int hits, int out, double battingAverage, int numberOfPitches, int battingOrder, boolean isBatting) {
+    public PlayerDTO(String name, String teamName, String position, Integer atBat, Integer hits, Integer out, Double battingAverage, Integer numberOfPitches, Integer battingOrder, boolean isBatting) {
         this.name = name;
         this.teamName = teamName;
         this.position = position;
@@ -41,27 +39,27 @@ public class PlayerResponseDTO {
         return position;
     }
 
-    public String getAtBat() {
+    public Integer getAtBat() {
         return atBat;
     }
 
-    public int getHits() {
+    public Integer getHits() {
         return hits;
     }
 
-    public int getOut() {
+    public Integer getOut() {
         return out;
     }
 
-    public double getBattingAverage() {
+    public Double getBattingAverage() {
         return battingAverage;
     }
 
-    public int getNumberOfPitches() {
+    public Integer getNumberOfPitches() {
         return numberOfPitches;
     }
 
-    public int getBattingOrder() {
+    public Integer getBattingOrder() {
         return battingOrder;
     }
 
@@ -69,8 +67,8 @@ public class PlayerResponseDTO {
         return isBatting;
     }
 
-    public static PlayerResponseDTO of(Player player) {
-        return new PlayerResponseDTO(
+    public static PlayerDTO of(Player player) {
+        return new PlayerDTO(
                 player.getName(),
                 player.getTeamName(),
                 player.getPosition(),
@@ -83,4 +81,5 @@ public class PlayerResponseDTO {
                 player.isBatting()
                 );
     }
+
 }

@@ -1,8 +1,8 @@
 package com.example.baseball.service;
 
-import com.example.baseball.entity.Game;
+import com.example.baseball.dto.MatchedListDTO;
 import com.example.baseball.dto.MatchedTeamDTO;
-import com.example.baseball.repository.GameRepository;
+import com.example.baseball.repository.ScoreRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,23 +11,18 @@ import java.util.stream.Collectors;
 @Service
 public class GameListService {
 
-    private final GameRepository gameRepository;
+    private final ScoreRepository scoreRepository;
 
-    private GameListService(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
+    private GameListService(ScoreRepository scoreRepository) {
+        this.scoreRepository = scoreRepository;
     }
 
-    public MatchedTeamDTO findGame(Long id) {
-        Game game = gameRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        System.out.println(game.getId());
-        return MatchedTeamDTO.of(game);
-    }
-
-    public List<MatchedTeamDTO> findGameList() {
-        return gameRepository.findAll()
-                .stream()
-                .map(game -> findGame(game.getId()))
-                .collect(Collectors.toList());
+    public MatchedListDTO findGameList() {
+        List<MatchedTeamDTO> matchedTeamDTOS = scoreRepository.findAll()
+                                            .stream()
+                                            .map(score -> MatchedTeamDTO.of(score))
+                                            .collect(Collectors.toList());
+        return MatchedListDTO.of(matchedTeamDTOS);
     }
 
 }

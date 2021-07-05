@@ -4,7 +4,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Embedded;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("Game")
 public class Game {
     @Id
     private Long id;
@@ -14,10 +13,18 @@ public class Game {
     private Integer homeScore;
     private Integer awayScore;
     private Integer inning;
-    private InningStatus status;
+    private InningStatus inningStatus;
+    private Long scoreId;
 
-    @Embedded.Nullable
-    private BallCount ballCount;
+    public Game(String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, InningStatus inningStatus, Long scoreId) {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+        this.inning = inning;
+        this.inningStatus = inningStatus;
+        this.scoreId = scoreId;
+    }
 
     public Long getId() {
         return id;
@@ -43,11 +50,11 @@ public class Game {
         return inning;
     }
 
-    public InningStatus getStatus() {
-        return status;
+    public InningStatus getInningStatus() {
+        return inningStatus;
     }
 
-    public BallCount getBallCount() {
-        return ballCount;
+    public Long getScoreId() {
+        return scoreId;
     }
 }

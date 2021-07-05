@@ -1,35 +1,57 @@
 package com.example.baseball.service;
 
-import com.example.baseball.dto.DetailPageDTO;
-import com.example.baseball.dto.HalfInningGameResponseDTO;
-import com.example.baseball.dto.PlayerResponseDTO;
-import com.example.baseball.entity.Game;
-import com.example.baseball.entity.Score;
+import com.example.baseball.dto.*;
+
 import com.example.baseball.repository.GameRepository;
 import com.example.baseball.repository.PlayerRepository;
 import com.example.baseball.repository.ScoreRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Service
 public class DetailService {
 
     private final ScoreRepository scoreRepository;
     private final GameRepository gameRepository;
     private final PlayerRepository playerRepository;
-    private final HalfInningGameResponseDTO halfInningGameResponseDTO;
-    private final PlayerResponseDTO playerResponseDTO;
 
-    public DetailService(ScoreRepository scoreRepository, GameRepository gameRepository, PlayerRepository playerRepository, HalfInningGameResponseDTO halfInningGameResponseDTO, PlayerResponseDTO playerResponseDTO) {
+    public DetailService(ScoreRepository scoreRepository, GameRepository gameRepository, PlayerRepository playerRepository) {
         this.scoreRepository = scoreRepository;
         this.gameRepository = gameRepository;
         this.playerRepository = playerRepository;
-        this.halfInningGameResponseDTO = halfInningGameResponseDTO;
-        this.playerResponseDTO = playerResponseDTO;
     }
 
-//    public DetailPageDTO showDetailpage(Long gameId) {
-//        Score score = scoreRepository.findById(gameId).orElseThrow(IllegalArgumentException::new);
-//        List<Game> games = gameRepository.findGamesByHomeTeam(score.getHomeTeam());
-        //playerRepository.findPlayersByTeamNameAndBattingIsTrue();
+
+    public DetailPageDTO showHomeDetailPage(String teamName) {
+        GameScoreDTO score = GameScoreDTO.of(scoreRepository.findScoreByHomeTeam(teamName).orElseThrow(IllegalArgumentException::new));
+
+        List<HalfInningGameDTO> halfInningGameDTOS = gameRepository.findAll()
+                .stream()
+                .map(game -> HalfInningGameDTO.of(game))
+                .collect(Collectors.toList());
+
+        List<PlayerDTO> players = playerRepository.findHitterByTeamName(teamName)
+                .stream()
+                .map(player -> PlayerDTO.of(player))
+                .collect(Collectors.toList());
+
+        return new DetailPageDTO(score, halfInningGameDTOS, players);
+    }
+    public DetailPageDTO showAwayDetailPage(String teamName) {
+        GameScoreDTO score = GameScoreDTO.of(scoreRepository.findScoreByAwayTeam(teamName).orElseThrow(IllegalArgumentException::new));
+
+        List<HalfInningGameDTO> halfInningGameDTOS = gameRepository.findAll()
+                .stream()
+                .map(game -> HalfInningGameDTO.of(game))
+                .collect(Collectors.toList());
+
+        List<PlayerDTO> players = playerRepository.findHitterByTeamName(teamName)
+                .stream()
+                .map(player -> PlayerDTO.of(player))
+                .collect(Collectors.toList());
+
+        return new DetailPageDTO(score, halfInningGameDTOS, players);
     }
 }

@@ -32,15 +32,15 @@ DROP TABLE IF EXISTS `baseball`.`player` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`player` (
     `name` VARCHAR(45) NOT NULL,
-    `position` VARCHAR(45) NULL,
-    `at_bat` VARCHAR(45) NULL,
+    `position` VARCHAR(45) NOT NULL,
+    `at_bat` INT NULL,
     `hits` INT NULL,
     `out` INT NULL,
     `batting_average` DOUBLE NULL,
-    `number_of_pitches` VARCHAR(45) NULL,
+    `number_of_pitches` INT NULL,
     `team_name` VARCHAR(45) NOT NULL,
     `batting_order` INT NULL,
-    `is_bat` TINYINT NULL,
+    `is_batting` BOOLEAN NULL,
     PRIMARY KEY (`name`),
     INDEX `fk_Player_Team1_idx` (`team_name` ASC) VISIBLE,
     CONSTRAINT `fk_Player_Team1`
@@ -57,11 +57,11 @@ CREATE TABLE IF NOT EXISTS `baseball`.`player` (
 DROP TABLE IF EXISTS `baseball`.`score` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`score` (
-    `id` INT NOT NULL,
-    `home` INT NOT NULL,
-    `away` INT NOT NULL,
+    `id` INT AUTO_INCREMENT,
     `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
+    `home_score` INT NOT NULL,
+    `away_score` INT NOT NULL,
     PRIMARY KEY (`id`),
     INDEX `fk_score_team1_idx` (`home_team` ASC) VISIBLE,
     INDEX `fk_score_team2_idx` (`away_team` ASC) VISIBLE,
@@ -84,17 +84,49 @@ CREATE TABLE IF NOT EXISTS `baseball`.`score` (
 DROP TABLE IF EXISTS `baseball`.`game` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`game` (
-    `id` INT NOT NULL,
+    `id` INT AUTO_INCREMENT,
     `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
-    `home_score` INT NULL,
-    `away_score` INT NULL,
-    `inning` INT NULL,
-    `status` VARCHAR(45) NULL,
-    `ball` VARCHAR(45) NULL,
-    `hit` TINYINT NULL,
-    PRIMARY KEY (`id`))
+    `home_score` INT NOT NULL,
+    `away_score` INT NOT NULL,
+    `inning` INT NOT NULL,
+    `inning_status` VARCHAR(45) NOT NULL,
+    `score_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `fk_game_score1_idx` (`score_id` ASC) VISIBLE,
+    CONSTRAINT `fk_game_score1`
+    FOREIGN KEY (`score_id`)
+    REFERENCES `baseball`.`score` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
     ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `baseball`.`ball_count`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `baseball`.`ball_count` ;
+
+CREATE TABLE IF NOT EXISTS `baseball`.`ball_count` (
+    `id` INT AUTO_INCREMENT,
+    `player_name` VARCHAR(45) NOT NULL,
+    `ball` VARCHAR(45) NOT NULL,
+    `game_id` INT NOT NULL,
+    PRIMARY KEY (`id`),
+    INDEX `fk_ball_count_game1_idx` (`game_id` ASC) VISIBLE,
+    INDEX `fk_ball_count_player1_idx` (`player_name` ASC) VISIBLE,
+    CONSTRAINT `fk_ball_count_game1`
+    FOREIGN KEY (`game_id`)
+    REFERENCES `baseball`.`game` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_ball_count_player1`
+    FOREIGN KEY (`player_name`)
+    REFERENCES `baseball`.`player` (`name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
