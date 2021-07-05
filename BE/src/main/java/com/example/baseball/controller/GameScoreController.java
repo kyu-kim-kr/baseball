@@ -3,10 +3,7 @@ package com.example.baseball.controller;
 import com.example.baseball.dto.PlayGameDTO;
 import com.example.baseball.entity.InningStatus;
 import com.example.baseball.service.GameScoreService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GameScoreController {
@@ -17,20 +14,21 @@ public class GameScoreController {
         this.gameScoreService = gameScoreService;
     }
 
-    @GetMapping("/game/attack/{inning}/{inningStatus}")
-    public PlayGameDTO showAttackScreen(@PathVariable Integer inning, @PathVariable String inningStatus) {
-        return gameScoreService.findAttackGameDTO(inning, inningStatus);
+    @GetMapping("/game/{listId}/attack/{inning}/{inningStatus}")
+    public PlayGameDTO showAttackScreen(@PathVariable Long listId, @PathVariable Integer inning, @PathVariable InningStatus inningStatus) {
+        return gameScoreService.findGameDTO(listId, inning, inningStatus);
     }
 
-//    @GetMapping("/game/defense/{inning}/{inningStatus}")
-//    public GameDTO showDefenseScreen(@PathVariable Integer inning, @PathVariable String inningStatus) {
-//        return gameScoreService.findGameDTO(inning, inningStatus);
-//    }
+    @GetMapping("/game/{listId}/defense/{inning}/{inningStatus}")
+    public PlayGameDTO showDefenseScreen(@PathVariable Long listId, @PathVariable Integer inning, @PathVariable InningStatus inningStatus) {
+        return gameScoreService.findGameDTO(listId, inning, inningStatus);
+    }
 
-//    @PutMapping("/game/defense/{inning}/{inningStatus}")
-//    public GameDTO updatePitch(@PathVariable Integer inning, @PathVariable String inningStatus) {
-//        return gameScoreService.updatePitch(inning, inningStatus);
-//    }
+    @PutMapping("/game/{listId}/defense/{inning}/{inningStatus}")
+    public PlayGameDTO updatePitch(@PathVariable Long listId, @PathVariable Integer inning, @PathVariable InningStatus inningStatus) {
+        return gameScoreService.updatePitch(listId, inning, inningStatus);
+    }
+
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.baseball.dto;
 
-import com.example.baseball.entity.Game;
 import com.example.baseball.entity.Score;
 
 public class MatchedTeamDTO {

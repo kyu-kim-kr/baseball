@@ -11,6 +11,14 @@ public class Score {
     private Integer homeScore;
     private Integer awayScore;
 
+    public Score(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore) {
+        this.id = id;
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+        this.homeScore = homeScore;
+        this.awayScore = awayScore;
+    }
+
     public Long getId() {
         return id;
     }

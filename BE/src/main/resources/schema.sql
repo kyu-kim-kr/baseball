@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `baseball`.`player` (
 DROP TABLE IF EXISTS `baseball`.`score` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`score` (
-    `id` INT NOT NULL,
+    `id` INT AUTO_INCREMENT,
     `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
     `home_score` INT NOT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `baseball`.`score` (
 DROP TABLE IF EXISTS `baseball`.`game` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`game` (
-    `id` INT NOT NULL,
+    `id` INT AUTO_INCREMENT,
     `home_team` VARCHAR(45) NOT NULL,
     `away_team` VARCHAR(45) NOT NULL,
     `home_score` INT NOT NULL,
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS `baseball`.`game` (
 DROP TABLE IF EXISTS `baseball`.`ball_count` ;
 
 CREATE TABLE IF NOT EXISTS `baseball`.`ball_count` (
-    `id` INT NOT NULL,
+    `id` INT AUTO_INCREMENT,
     `player_name` VARCHAR(45) NOT NULL,
     `ball` VARCHAR(45) NOT NULL,
     `game_id` INT NOT NULL,

@@ -1,8 +1,9 @@
 package com.example.baseball.dto;
 
 import com.example.baseball.entity.Game;
+import com.example.baseball.entity.InningStatus;
 
-public class HalfInningGameResponseDTO {
+public class HalfInningGameDTO {
 
     private Long id;
 
@@ -14,7 +15,7 @@ public class HalfInningGameResponseDTO {
     private String inningStatus; //Enum으로 관리
     private Long scoreId;
 
-    public HalfInningGameResponseDTO(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, String inningStatus, Long scoreId) {
+    public HalfInningGameDTO(Long id, String homeTeam, String awayTeam, Integer homeScore, Integer awayScore, Integer inning, String inningStatus, Long scoreId) {
         this.id = id;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -57,8 +58,8 @@ public class HalfInningGameResponseDTO {
         return scoreId;
     }
 
-    public static HalfInningGameResponseDTO of(Game game) {
-        return new HalfInningGameResponseDTO(
+    public static HalfInningGameDTO of(Game game) {
+        return new HalfInningGameDTO(
                 game.getId(),
                 game.getHomeTeam(),
                 game.getAwayTeam(),
@@ -68,6 +69,15 @@ public class HalfInningGameResponseDTO {
                 game.getInningStatus().getStatus(),
                 game.getScoreId()
         );
+    }
+
+    public void updateAttackTeamScore(String inningStatus, int attackPoint) {
+        if(inningStatus.equals(InningStatus.TOP.toString())) {
+            this.awayScore = awayScore + attackPoint;
+        }
+        if(inningStatus.equals(InningStatus.BOTTOM.toString())) {
+            this.homeScore += homeScore + attackPoint;
+        }
     }
 }
 

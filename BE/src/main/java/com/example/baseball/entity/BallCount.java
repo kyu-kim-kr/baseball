@@ -10,6 +10,12 @@ public class BallCount {
     private Sbo ball;
     private Long gameId;
 
+    public BallCount(String playerName, Sbo ball, Long gameId) {
+        this.playerName = playerName;
+        this.ball = ball;
+        this.gameId = gameId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -24,5 +30,15 @@ public class BallCount {
 
     public Long getGameId() {
         return gameId;
+    }
+
+    @Override
+    public String toString() {
+        return "BallCount{" +
+                "id=" + id +
+                ", playerName='" + playerName + '\'' +
+                ", ball=" + ball +
+                ", gameId=" + gameId +
+                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.example.baseball.controller;
 
+import com.example.baseball.dto.MatchedListDTO;
 import com.example.baseball.dto.MatchedTeamDTO;
 import com.example.baseball.service.GameListService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,7 @@ public class GameListController {
     }
 
     @GetMapping("/matchList")
-    public List<MatchedTeamDTO> findGameList() {
-        List<MatchedTeamDTO> games = gameListService.findGameList();
-        return games;
+    public MatchedListDTO findGameList() {
+        return gameListService.findGameList();
     }
 }

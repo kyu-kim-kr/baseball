@@ -24,19 +24,34 @@ public class DetailService {
     }
 
 
-    public DetailPageDTO showDetailpage(Long gameId, String teamName) {
-        GameScoreResponseDTO score = GameScoreResponseDTO.of(scoreRepository.findById(gameId).orElseThrow(IllegalArgumentException::new));
+    public DetailPageDTO showHomeDetailPage(String teamName) {
+        GameScoreDTO score = GameScoreDTO.of(scoreRepository.findScoreByHomeTeam(teamName).orElseThrow(IllegalArgumentException::new));
 
-        List<HalfInningGameResponseDTO> halfInningGameResponseDTOs = gameRepository.findGamesByHomeTeam(score.getHomeTeam())
+        List<HalfInningGameDTO> halfInningGameDTOS = gameRepository.findAll()
                 .stream()
-                .map(game -> HalfInningGameResponseDTO.of(game))
+                .map(game -> HalfInningGameDTO.of(game))
                 .collect(Collectors.toList());
 
-        List<PlayerResponseDTO> players = playerRepository.findPlayersByTeamName(teamName)
+        List<PlayerDTO> players = playerRepository.findHitterByTeamName(teamName)
                 .stream()
-                .map(player -> PlayerResponseDTO.of(player))
+                .map(player -> PlayerDTO.of(player))
                 .collect(Collectors.toList());
 
-        return new DetailPageDTO(score, halfInningGameResponseDTOs, players);
+        return new DetailPageDTO(score, halfInningGameDTOS, players);
+    }
+    public DetailPageDTO showAwayDetailPage(String teamName) {
+        GameScoreDTO score = GameScoreDTO.of(scoreRepository.findScoreByAwayTeam(teamName).orElseThrow(IllegalArgumentException::new));
+
+        List<HalfInningGameDTO> halfInningGameDTOS = gameRepository.findAll()
+                .stream()
+                .map(game -> HalfInningGameDTO.of(game))
+                .collect(Collectors.toList());
+
+        List<PlayerDTO> players = playerRepository.findHitterByTeamName(teamName)
+                .stream()
+                .map(player -> PlayerDTO.of(player))
+                .collect(Collectors.toList());
+
+        return new DetailPageDTO(score, halfInningGameDTOS, players);
     }
 }

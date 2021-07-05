@@ -4,31 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayGameDTO {
-    private GameScoreResponseDTO gameScoreResponseDTO;
-    private HalfInningGameResponseDTO halfInningGameResponseDTO;
-    private List<PlayerResponseDTO> players = new ArrayList<>(2); //0 :투수, 1 :타자
-    private List<BallCountDTO> ballCounts;
+    private GameScoreDTO gameScoreDTO;
+    private HalfInningGameDTO halfInningGameDTO;
+    private PlayerDTO pitcherDTO;
+    private PlayerDTO hitterDTO;
+//    private ArrayList<PlayerDTO> playerDTOs; //0 :투수, 1 :타자
+    private List<BallCountDTO> ballCountDTOs;
 
-    public PlayGameDTO(GameScoreResponseDTO gameScoreResponseDTO, HalfInningGameResponseDTO halfInningGameResponseDTO, List<PlayerResponseDTO> players, List<BallCountDTO> ballCounts) {
-        this.gameScoreResponseDTO = gameScoreResponseDTO;
-        this.halfInningGameResponseDTO = halfInningGameResponseDTO;
-        this.players = players;
-        this.ballCounts = ballCounts;
+//    public PlayGameDTO(GameScoreDTO gameScoreDTO, HalfInningGameDTO halfInningGameDTO, ArrayList<PlayerDTO> playerDTOs, List<BallCountDTO> ballCountDTOs) {
+//        this.gameScoreDTO = gameScoreDTO;
+//        this.halfInningGameDTO = halfInningGameDTO;
+//        this.playerDTOs = playerDTOs;
+//        this.ballCountDTOs = ballCountDTOs;
+//    }
+
+
+    public PlayGameDTO(GameScoreDTO gameScoreDTO, HalfInningGameDTO halfInningGameDTO, PlayerDTO pitcherDTO, PlayerDTO hitterDTO, List<BallCountDTO> ballCountDTOs) {
+        this.gameScoreDTO = gameScoreDTO;
+        this.halfInningGameDTO = halfInningGameDTO;
+        this.pitcherDTO = pitcherDTO;
+        this.hitterDTO = hitterDTO;
+        this.ballCountDTOs = ballCountDTOs;
     }
 
-    public GameScoreResponseDTO getGameScoreResponseDTO() {
-        return gameScoreResponseDTO;
+    public GameScoreDTO getGameScoreDTO() {
+        return gameScoreDTO;
     }
 
-    public HalfInningGameResponseDTO getHalfInningGameResponseDTO() {
-        return halfInningGameResponseDTO;
+    public HalfInningGameDTO getHalfInningGameDTO() {
+        return halfInningGameDTO;
     }
 
-    public List<PlayerResponseDTO> getPlayers() {
-        return players;
+//    public ArrayList<PlayerDTO> getPlayerDTOs() {
+//        return playerDTOs;
+//    }
+
+
+    public PlayerDTO getPitcherDTO() {
+        return pitcherDTO;
     }
 
-    public List<BallCountDTO> getBallCounts() {
-        return ballCounts;
+    public PlayerDTO getHitterDTO() {
+        return hitterDTO;
+    }
+
+    public List<BallCountDTO> getBallCountDTOs() {
+        return ballCountDTOs;
     }
 }
